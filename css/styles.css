@@ -1,5 +1,7 @@
-:root{color-scheme:light dark;--bg:#faf9f6;--card:#fefdfb;--muted:#f3f1ec;--fg:#1f1d19;--fg2:#5e5a50;--fg3:#736e62;--border:#dcd8ce;--border2:#d3cfc4;--input:#8e887a;--ring:#566b2d;--primary:#566b2d;--primary-hover:#485b24;--primary-deep:#3d4e1e;--on-primary:#ffffff;--soft:#eef0e2;--soft-fg:#3f4f1f;--ochre:#b08a4a;--ochre-bg:#f6efe0;--ochre-fg:#7a5209;--danger:#b03a2e;--stripe:#efede6;--bezel:#1f1d19;--deep-bg:#3d4e1e;--deep-fg:#faf9f6;--deep-fg2:#dfe4cc;--deep-line:rgba(250,249,246,.18);--deep-card:rgba(250,249,246,.07);--deep-btn:#faf9f6;--deep-btn-fg:#2f3c17;--deep-btn-hover:#eef0e2;--sh1:0 1px 2px rgba(31,29,25,.04);--sh2:0 4px 16px rgba(31,29,25,.06),0 1px 2px rgba(31,29,25,.04);--sh3:0 24px 64px rgba(31,29,25,.12),0 2px 6px rgba(31,29,25,.05);--sans:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SFMono-Regular',Menlo,monospace}
-@media (prefers-color-scheme: dark){:root{--bg:#161411;--card:#1e1c18;--muted:#1b1915;--fg:#ece9e2;--fg2:#b1aca0;--fg3:#958f83;--border:#2f2c26;--border2:#3d3a33;--input:#7f796c;--ring:#b5c97c;--primary:#a9bc74;--primary-hover:#bacb8a;--primary-deep:#98ab63;--on-primary:#1a2008;--soft:#272c19;--soft-fg:#c5d595;--ochre:#b08a4a;--ochre-bg:#2c2412;--ochre-fg:#e6bd66;--danger:#f0978b;--stripe:#25221e;--bezel:#3d3a33;--deep-bg:#20260f;--deep-fg:#ece9e2;--deep-fg2:#c5d595;--deep-line:rgba(236,233,226,.14);--deep-card:rgba(236,233,226,.05);--deep-btn:#a9bc74;--deep-btn-fg:#1a2008;--deep-btn-hover:#bacb8a;--sh1:0 1px 2px rgba(0,0,0,.3);--sh2:0 4px 16px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.3);--sh3:0 24px 64px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.3)}}
+:root{color-scheme:light dark;--bezel-ring:rgba(31,29,25,.35);--bg:#faf9f6;--card:#fefdfb;--muted:#f3f1ec;--fg:#1f1d19;--fg2:#5e5a50;--fg3:#736e62;--border:#dcd8ce;--border2:#d3cfc4;--input:#8e887a;--ring:#566b2d;--primary:#566b2d;--primary-hover:#485b24;--primary-deep:#3d4e1e;--on-primary:#ffffff;--soft:#eef0e2;--soft-fg:#3f4f1f;--ochre:#b08a4a;--ochre-bg:#f6efe0;--ochre-fg:#7a5209;--danger:#b03a2e;--stripe:#efede6;--bezel:#1f1d19;--deep-bg:#3d4e1e;--deep-fg:#faf9f6;--deep-fg2:#dfe4cc;--deep-line:rgba(250,249,246,.18);--deep-card:rgba(250,249,246,.07);--deep-btn:#faf9f6;--deep-btn-fg:#2f3c17;--deep-btn-hover:#eef0e2;--sh1:0 1px 2px rgba(31,29,25,.04);--sh2:0 4px 16px rgba(31,29,25,.06),0 1px 2px rgba(31,29,25,.04);--sh3:0 24px 64px rgba(31,29,25,.12),0 2px 6px rgba(31,29,25,.05);--sans:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SFMono-Regular',Menlo,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bezel-ring:rgba(255,255,255,.22);--bg:#161411;--card:#1e1c18;--muted:#1b1915;--fg:#ece9e2;--fg2:#b1aca0;--fg3:#958f83;--border:#2f2c26;--border2:#3d3a33;--input:#7f796c;--ring:#b5c97c;--primary:#a9bc74;--primary-hover:#bacb8a;--primary-deep:#98ab63;--on-primary:#1a2008;--soft:#272c19;--soft-fg:#c5d595;--ochre:#b08a4a;--ochre-bg:#2c2412;--ochre-fg:#e6bd66;--danger:#f0978b;--stripe:#25221e;--bezel:#3d3a33;--deep-bg:#20260f;--deep-fg:#ece9e2;--deep-fg2:#c5d595;--deep-line:rgba(236,233,226,.14);--deep-card:rgba(236,233,226,.05);--deep-btn:#a9bc74;--deep-btn-fg:#1a2008;--deep-btn-hover:#bacb8a;--sh1:0 1px 2px rgba(0,0,0,.3);--sh2:0 4px 16px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.3);--sh3:0 24px 64px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.3)}}
+:root[data-theme="dark"]{--bezel-ring:rgba(255,255,255,.22);--bg:#161411;--card:#1e1c18;--muted:#1b1915;--fg:#ece9e2;--fg2:#b1aca0;--fg3:#958f83;--border:#2f2c26;--border2:#3d3a33;--input:#7f796c;--ring:#b5c97c;--primary:#a9bc74;--primary-hover:#bacb8a;--primary-deep:#98ab63;--on-primary:#1a2008;--soft:#272c19;--soft-fg:#c5d595;--ochre:#b08a4a;--ochre-bg:#2c2412;--ochre-fg:#e6bd66;--danger:#f0978b;--stripe:#25221e;--bezel:#3d3a33;--deep-bg:#20260f;--deep-fg:#ece9e2;--deep-fg2:#c5d595;--deep-line:rgba(236,233,226,.14);--deep-card:rgba(236,233,226,.05);--deep-btn:#a9bc74;--deep-btn-fg:#1a2008;--deep-btn-hover:#bacb8a;--sh1:0 1px 2px rgba(0,0,0,.3);--sh2:0 4px 16px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.3);--sh3:0 24px 64px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.3)}
+:root[data-theme="light"]{color-scheme:light}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:1rem;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip;font-variant-numeric:tabular-nums}
@@ -37,10 +39,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (min-width:920px){.shot-stock{min-height:246px}}
 
 /* Marco del celular del hero, estilo iPhone reciente: bisel finísimo, esquinas proporcionales y reborde metálico */
-:root{--bezel-w:3px;--bezel-r:13.5% / 6.4%;--bezel-ring:rgba(255,255,255,.22)}
+:root{--bezel-w:3px;--bezel-r:13.5% / 6.4%}
 @media (max-width:919px){:root{--bezel-w:2px}}
 @media (max-width:520px){:root{--bezel-w:1.5px}}
-@media (prefers-color-scheme: light){:root{--bezel-ring:rgba(31,29,25,.35)}}
 
 /* Fotos: proporciones por ancho (en celular más bajas y sin forzar ancho mínimo) */
 .photo-wide{aspect-ratio:16/9;min-width:0;width:100%}
@@ -51,3 +52,17 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* Barra superior en celular: nada se parte en dos líneas */
 .brand-name,.cta-mob{white-space:nowrap}
 @media (max-width:419px){.brand-name{display:none}}
+
+/* Botón de modo claro/oscuro */
+.theme-btn{display:grid;place-items:center;width:44px;height:44px;padding:0;border-radius:12px;border:1px solid var(--border2);background:var(--card);color:var(--fg);cursor:pointer;transition:background-color 150ms,border-color 150ms}
+.theme-btn:hover{background:var(--muted);border-color:var(--fg3)}
+.theme-btn .ic-sun{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .theme-btn .ic-sun{display:block}:root:not([data-theme="light"]) .theme-btn .ic-moon{display:none}}
+:root[data-theme="dark"] .theme-btn .ic-sun{display:block}
+:root[data-theme="dark"] .theme-btn .ic-moon{display:none}
+
+/* Capturas de la app: una por modo */
+.img-dark{display:none!important}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .img-dark{display:block!important}:root:not([data-theme="light"]) .img-light{display:none!important}}
+:root[data-theme="dark"] .img-dark{display:block!important}
+:root[data-theme="dark"] .img-light{display:none!important}

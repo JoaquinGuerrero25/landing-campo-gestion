@@ -2,7 +2,7 @@
 
 Landing page de **Gestión de Campo**, aplicación de gestión para productores de agricultura extensiva (margen por lote, stock con costo promedio, carga sin señal).
 
-Sitio estático: HTML + CSS + JavaScript puro, sin build ni dependencias. Tema claro/oscuro automático, accesible (WCAG AA) y con `prefers-reduced-motion`.
+Sitio estático: HTML + CSS + JavaScript puro, sin build ni dependencias. Modo claro/oscuro: sigue el del sistema y tiene un botón en la barra superior que recuerda la elección (`localStorage`, clave `gc-theme`), accesible (WCAG AA) y con `prefers-reduced-motion`.
 
 ## Estructura
 
@@ -27,7 +27,7 @@ Buscar en `index.html` los textos entre corchetes, resaltados en ocre: `[correo]
 
 ## Capturas de la aplicación
 
-`assets/app-margen.webp`, `app-stock.webp` y `app-celular.webp` son capturas reales de la aplicación con los datos ficticios de su demostración (organización «Agropecuaria Los Ñandúes SA (demo)», campaña 2024/25, en modo oscuro). Se generaron con `pnpm --filter @campo/api demo:seed` sobre una base aparte, la API y el cliente, y Chrome en 1440×900 a 2× (escritorio, 2880×1800) y 390×823 a 3× (celular). Para actualizarlas, repetir ese proceso y reemplazar los archivos.
+Hay una versión por modo de cada captura: `assets/app-margen-{dark,light}.webp`, `app-stock-{dark,light}.webp` y `app-celular-{dark,light}.webp`. Son capturas reales de la aplicación con los datos ficticios de su demostración (organización «Agropecuaria Los Ñandúes SA (demo)», campaña 2024/25). Se generaron con `pnpm --filter @campo/api demo:seed` sobre una base aparte, la API y el cliente, y Chrome en 1440×900 a 2× (escritorio, 2880×1800) y 390×823 a 3× (celular), una vez con el esquema claro y otra con el oscuro. Para actualizarlas, repetir ese proceso y reemplazar los archivos.
 
 ## Fotos
 

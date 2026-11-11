@@ -172,6 +172,37 @@
     syncFieldsFromState();
   }));
 
+  /* ---------- modo claro / oscuro ---------- */
+  const THEME_KEY = 'gc-theme';
+  const root = document.documentElement;
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+  const currentTheme = () => root.getAttribute('data-theme') || (systemDark.matches ? 'dark' : 'light');
+
+  function syncThemeButtons() {
+    const next = currentTheme() === 'dark' ? 'claro' : 'oscuro';
+    $$('[data-theme-toggle]').forEach((b) => {
+      b.setAttribute('aria-label', `Cambiar a modo ${next}`);
+      b.setAttribute('title', `Cambiar a modo ${next}`);
+    });
+  }
+
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    $$('meta[name="theme-color"]').forEach((m) => {
+      m.removeAttribute('media');
+      m.setAttribute('content', theme === 'dark' ? '#161411' : '#faf9f6');
+    });
+    try { localStorage.setItem(THEME_KEY, theme); } catch (_) { /* sin almacenamiento: dura hasta cerrar la pestaña */ }
+    syncThemeButtons();
+  }
+
+  $$('[data-theme-toggle]').forEach((b) => b.addEventListener('click', () => applyTheme(currentTheme() === 'dark' ? 'light' : 'dark')));
+  // Si todavía no eligió, acompaña los cambios del sistema.
+  const onSystemTheme = () => { if (!root.hasAttribute('data-theme')) syncThemeButtons(); };
+  systemDark.addEventListener ? systemDark.addEventListener('change', onSystemTheme) : systemDark.addListener(onSystemTheme);
+  syncThemeButtons();
+
   /* ---------- movimiento ---------- */
   function setupMotion() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !Element.prototype.animate) return;
