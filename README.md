@@ -24,7 +24,12 @@ Abrir http://localhost:5173.
 
 ## Pendientes de contenido
 
-Buscar en `index.html` los textos entre corchetes, resaltados en ocre: `[correo]`, `[teléfono / WhatsApp]`, `[completar: IVA y tipo de cambio]`, `[cupo]` y `[Razón social · CUIT]`. También faltan las páginas de Términos y Privacidad (`#terminos`, `#privacidad`).
+Buscar en `index.html` los textos entre corchetes, resaltados en ocre. Son datos reales de la empresa que hay que completar:
+
+- Sección «Sobre nosotros» (`#nosotros`, «Datos de la empresa»): `[razón social]`, `[CUIT]`, `[ciudad y provincia]`, `[correo]`, `[teléfono]`, `[WhatsApp]` y `[días y horario]`.
+- Contacto y pie de página: `[correo]`, `[teléfono / WhatsApp]` y `[Razón social · CUIT]`.
+
+También faltan las páginas de Términos y Privacidad (`#terminos`, `#privacidad`).
 
 ## Capturas de la aplicación
 
