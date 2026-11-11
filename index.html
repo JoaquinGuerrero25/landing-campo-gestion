@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gestión de Campo — Margen por lote para productores</title>
+<meta name="description" content="Aplicación de gestión para productores de agricultura extensiva en Argentina. Cuánto costó y cuánto margen dejó cada lote, en cada campaña. Se carga desde el celular, también sin señal.">
+<meta name="robots" content="index, follow">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161411" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Gestión de Campo">
+<meta property="og:title" content="Gestión de Campo — Margen por lote para productores">
+<meta property="og:description" content="Cuánto costó y cuánto margen dejó cada lote, en cada campaña. Se carga desde el celular en el campo, también sin señal.">
+<meta property="og:image" content="assets/pwa-512x512.png">
+<meta property="og:image:alt" content="Logo de Gestión de Campo: un brote sobre fondo verde oliva">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gestión de Campo — Margen por lote para productores">
+<meta name="twitter:description" content="Cuánto costó y cuánto margen dejó cada lote, en cada campaña.">
+<meta name="twitter:image" content="assets/pwa-512x512.png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Gestión de Campo","applicationCategory":"BusinessApplication","operatingSystem":"Web, Android, iOS (PWA)","inLanguage":"es-AR","description":"Aplicación de gestión para productores de agricultura extensiva: costo y margen por lote, stock de insumos con costo promedio y carga sin señal.","offers":{"@type":"AggregateOffer","priceCurrency":"USD","lowPrice":"600","highPrice":"2000","offerCount":"3"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Funciona sin internet?","acceptedAnswer":{"@type":"Answer","text":"Sí. Se cargan actividades, camiones y cosechas y se sincroniza al volver la señal. El resto se ve con lo último que abriste."}},{"@type":"Question","name":"¿Qué pasa si dejo de pagar?","acceptedAnswer":{"@type":"Answer","text":"Tenés 15 días de gracia y después la cuenta queda en solo lectura: ves todo y exportás tus datos, pero no cargás. Al ponerte al día volvés a cargar."}},{"@type":"Question","name":"¿Puedo darme de baja?","acceptedAnswer":{"@type":"Answer","text":"El contrato es anual con renovación automática. La baja se pide con 30 días de aviso antes del aniversario."}},{"@type":"Question","name":"¿Qué pasa si paso de tramo de hectáreas?","acceptedAnswer":{"@type":"Answer","text":"Se revisa en cada renovación. Si las superás durante el año, te avisamos."}},{"@type":"Question","name":"¿Mi encargado ve los costos?","acceptedAnswer":{"@type":"Answer","text":"No, salvo que vos le des el permiso."}},{"@type":"Question","name":"¿Puedo importar lo que ya tengo en Excel?","acceptedAnswer":{"@type":"Answer","text":"Sí, con nuestra plantilla. Está incluido en la puesta en marcha."}},{"@type":"Question","name":"¿En qué moneda se factura?","acceptedAnswer":{"@type":"Answer","text":"Los precios están en dólares y se facturan en pesos al tipo de cambio del día."}}]}]}</script>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="f1" href="#contenido" style="position: absolute; left: 12px; top: -80px; z-index: 100; background: var(--primary); color: var(--on-primary); padding: 12px 16px; border-radius: 10px; font-weight: 600; text-decoration: none;" >Saltar al contenido</a>
+
+<header data-screen-label="Barra superior" style="position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid var(--border);">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 40px); height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+    <a href="#inicio" aria-label="Gestión de Campo, ir al inicio" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--fg);">
+      <img src="assets/favicon.svg" alt="" width="34" height="34" style="display: block; width: 34px; height: 34px;">
+      <span style="font-weight: 600; font-size: 1.0625rem; letter-spacing: -0.01em;">Gestión de Campo</span>
+    </a>
+    <nav aria-label="Principal" data-desk="" style="display: flex; align-items: center; gap: 4px;">
+      <a class="h2" href="#como-funciona" style="color: var(--fg2); text-decoration: none; font-size: .9375rem; font-weight: 500; padding: 10px 12px; border-radius: 10px; transition: color 150ms, background-color 150ms;" >Cómo funciona</a>
+      <a class="h2" href="#que-incluye" style="color: var(--fg2); text-decoration: none; font-size: .9375rem; font-weight: 500; padding: 10px 12px; border-radius: 10px; transition: color 150ms, background-color 150ms;" >Qué incluye</a>
+      <a class="h2" href="#precios" style="color: var(--fg2); text-decoration: none; font-size: .9375rem; font-weight: 500; padding: 10px 12px; border-radius: 10px; transition: color 150ms, background-color 150ms;" >Precios</a>
+      <a class="h2" href="#asesores" style="color: var(--fg2); text-decoration: none; font-size: .9375rem; font-weight: 500; padding: 10px 12px; border-radius: 10px; transition: color 150ms, background-color 150ms;" >Asesores</a>
+      <a class="h3" href="#contacto" style="margin-left: 12px; display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 12px; background: var(--primary); color: var(--on-primary); font-weight: 600; font-size: .9375rem; text-decoration: none; transition: background-color 150ms;" >Pedí una demo</a>
+    </nav>
+    <div data-mob="" style="display: flex; align-items: center; gap: 8px;">
+      <a class="h3" href="#contacto" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 12px; background: var(--primary); color: var(--on-primary); font-weight: 600; font-size: .9375rem; text-decoration: none;" >Pedí una demo</a>
+      <button id="menu-btn" type="button" aria-controls="menu-movil" aria-expanded="false" aria-label="Menú" data-toggle-menu style="display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--border2); background: var(--card); color: var(--fg); padding: 0;">
+        <span data-if="menuClosed" style="display: contents"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></span>
+        <span data-if="menuOpen" style="display: contents" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></span>
+      </button>
+    </div>
+  </div>
+  <span data-if="menuOpen" style="display: contents" hidden>
+    <nav id="menu-movil" aria-label="Principal (celular)" data-mob="" style="border-top: 1px solid var(--border); background: var(--card); box-shadow: var(--sh2); animation: gc-fade-up 220ms cubic-bezier(.16,1,.3,1);">
+      <ul style="max-width: 1200px; margin: 0 auto; padding: 8px clamp(20px, 5vw, 40px) 16px; display: grid;">
+        <li><a href="#como-funciona" data-close-menu style="display: flex; align-items: center; min-height: 52px; color: var(--fg); text-decoration: none; font-size: 1.0625rem; font-weight: 500; border-bottom: 1px solid var(--border);">Cómo funciona</a></li>
+        <li><a href="#que-incluye" data-close-menu style="display: flex; align-items: center; min-height: 52px; color: var(--fg); text-decoration: none; font-size: 1.0625rem; font-weight: 500; border-bottom: 1px solid var(--border);">Qué incluye</a></li>
+        <li><a href="#precios" data-close-menu style="display: flex; align-items: center; min-height: 52px; color: var(--fg); text-decoration: none; font-size: 1.0625rem; font-weight: 500; border-bottom: 1px solid var(--border);">Precios</a></li>
+        <li><a href="#asesores" data-close-menu style="display: flex; align-items: center; min-height: 52px; color: var(--fg); text-decoration: none; font-size: 1.0625rem; font-weight: 500;">Asesores</a></li>
+      </ul>
+    </nav>
+  </span>
+</header>
+
+<main id="contenido" tabindex="-1" style="outline: none;">
+
+<section id="inicio" aria-labelledby="hero-t" data-screen-label="01 Hero" style="position: relative; overflow: hidden; scroll-margin-top: 68px;">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(60% 50% at 85% 20%, var(--soft) 0%, transparent 70%), radial-gradient(40% 40% at 0% 100%, var(--ochre-bg) 0%, transparent 70%); opacity: .9; pointer-events: none;"></div>
+  <div style="position: relative; max-width: 1200px; margin: 0 auto; padding: clamp(48px, 8vw, 104px) clamp(20px, 5vw, 40px) clamp(56px, 8vw, 96px);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: clamp(48px, 6vw, 80px); align-items: center;">
+      <div style="display: grid; gap: 28px; justify-items: start;">
+        <h1 id="hero-t" data-hero="0" style="font-size: clamp(2.5rem, 1.4rem + 4.2vw, 4.5rem); line-height: 1.03; letter-spacing: -0.04em; font-weight: 600; text-wrap: balance; max-width: 13em;">Cuánto costó y cuánto margen dejó <span style="color: var(--primary);">cada lote.</span></h1>
+        <p data-hero="1" style="font-size: clamp(1.0625rem, 1rem + .4vw, 1.3125rem); line-height: 1.55; color: var(--fg2); max-width: 32em; text-wrap: pretty;">La aplicación de gestión para productores de agricultura extensiva. Se carga desde el celular en el campo, también sin señal.</p>
+        <div data-hero="2" style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: 4px;">
+          <a class="h4" href="#contacto" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 12px; background: var(--primary); color: var(--on-primary); font-weight: 600; font-size: 1.0625rem; text-decoration: none; box-shadow: var(--sh2); transition: background-color 150ms, transform 150ms;" >Pedí una demo<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a class="h5" href="#precios" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; border-radius: 12px; border: 1px solid var(--input); background: var(--card); color: var(--fg); font-weight: 600; font-size: 1.0625rem; text-decoration: none; transition: background-color 150ms, border-color 150ms;" >Ver precios</a>
+        </div>
+      </div>
+
+      <div data-hero="3" style="position: relative; padding: 0 0 14% 16%;">
+        <div role="img" aria-label="Espacio reservado para la captura de escritorio: margen por lote" style="border-radius: 14px; border: 1px solid var(--border); background: var(--card); box-shadow: var(--sh3); overflow: hidden;">
+          <div aria-hidden="true" style="height: 34px; display: flex; align-items: center; gap: 6px; padding: 0 14px; border-bottom: 1px solid var(--border); background: var(--muted);">
+            <span style="width: 9px; height: 9px; border-radius: 50%; background: var(--border2);"></span>
+            <span style="width: 9px; height: 9px; border-radius: 50%; background: var(--border2);"></span>
+            <span style="width: 9px; height: 9px; border-radius: 50%; background: var(--border2);"></span>
+          </div>
+          <div style="aspect-ratio: 16 / 10; display: grid; place-items: center; padding: 16px; background: repeating-linear-gradient(135deg, var(--stripe) 0 10px, var(--card) 10px 20px);">
+            <span style="font-family: var(--mono); font-size: .75rem; color: var(--fg2); background: var(--card); border: 1px solid var(--border); padding: 6px 10px; border-radius: 8px; text-align: center;">captura: margen por lote</span>
+          </div>
+        </div>
+        <div data-hero="4" role="img" aria-label="Espacio reservado para la captura del celular: carga de una actividad" style="position: absolute; left: 0; bottom: 0; width: 34%; border: 6px solid var(--bezel); border-radius: 26px; background: var(--card); box-shadow: var(--sh3); overflow: hidden;">
+          <div style="aspect-ratio: 9 / 19; display: grid; place-items: center; padding: 8px; background: repeating-linear-gradient(135deg, var(--stripe) 0 8px, var(--card) 8px 16px);">
+            <span style="font-family: var(--mono); font-size: .6875rem; line-height: 1.35; color: var(--fg2); background: var(--card); border: 1px solid var(--border); padding: 5px 7px; border-radius: 7px; text-align: center;">captura: carga de una actividad</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ul aria-label="Puntos clave" style="margin-top: clamp(56px, 8vw, 104px); padding-top: 32px; border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 28px 40px;">
+      <li data-hero="5" style="display: flex; gap: 14px; align-items: flex-start;">
+        <span aria-hidden="true" style="flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--soft); color: var(--soft-fg);"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"></path></svg></span>
+        <p style="display: grid; gap: 2px;"><strong style="font-weight: 600;">Margen por lote</strong><span style="color: var(--fg2); font-size: .9375rem;">Bruto, neto y por hectárea.</span></p>
+      </li>
+      <li data-hero="6" style="display: flex; gap: 14px; align-items: flex-start;">
+        <span aria-hidden="true" style="flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--soft); color: var(--soft-fg);"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7.5L12 3l8.5 4.5v9L12 21l-8.5-4.5zM3.5 7.5L12 12l8.5-4.5M12 12v9"></path></svg></span>
+        <p style="display: grid; gap: 2px;"><strong style="font-weight: 600;">Stock confiable</strong><span style="color: var(--fg2); font-size: .9375rem;">Con costo promedio.</span></p>
+      </li>
+      <li data-hero="7" style="display: flex; gap: 14px; align-items: flex-start;">
+        <span aria-hidden="true" style="flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--soft); color: var(--soft-fg);"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.8a15 15 0 0 1 4-2.5M22 8.8a15 15 0 0 0-8.3-3.7M5 12.9a10 10 0 0 1 5-2.7M19 12.9a10 10 0 0 0-2.8-2.4M8.5 16.4a5 5 0 0 1 7 0M12 20v.01M3 3l18 18"></path></svg></span>
+        <p style="display: grid; gap: 2px;"><strong style="font-weight: 600;">Funciona sin señal</strong><span style="color: var(--fg2); font-size: .9375rem;">Cargás y se sincroniza solo.</span></p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="problema" aria-labelledby="problema-t" data-screen-label="02 Problema" style="scroll-margin-top: 68px;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10vw, 128px) clamp(20px, 5vw, 40px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(40px, 6vw, 88px); align-items: center;">
+    <div style="display: grid; gap: 32px;">
+      <div data-reveal="" style="display: grid; gap: 14px;">
+        <p style="font-family: var(--mono); font-size: .8125rem; letter-spacing: .08em; text-transform: uppercase; color: var(--primary);">El problema</p>
+        <h2 id="problema-t" style="font-size: clamp(1.875rem, 1.3rem + 2.2vw, 2.875rem); line-height: 1.1; letter-spacing: -0.03em; font-weight: 600; text-wrap: balance;">Hoy el número de cada lote se arma a mano.</h2>
+      </div>
+      <ul style="display: grid; gap: 20px;">
+        <li data-reveal="" data-delay="1" style="display: flex; gap: 14px; align-items: flex-start;">
+          <span aria-hidden="true" style="flex: none; color: var(--ochre-fg); padding-top: 2px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z"></path></svg></span>
+          <p style="font-size: 1.0625rem; color: var(--fg2);"><strong style="color: var(--fg); font-weight: 600;">Los datos están desparramados</strong> en planillas, cuadernos y mensajes de WhatsApp.</p>
+        </li>
+        <li data-reveal="" data-delay="2" style="display: flex; gap: 14px; align-items: flex-start;">
+          <span aria-hidden="true" style="flex: none; color: var(--ochre-fg); padding-top: 2px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
+          <p style="font-size: 1.0625rem; color: var(--fg2);"><strong style="color: var(--fg); font-weight: 600;">El costo de cada lote se arma a mano</strong> y llega tarde, cuando ya no sirve para decidir.</p>
+        </li>
+        <li data-reveal="" data-delay="3" style="display: flex; gap: 14px; align-items: flex-start;">
+          <span aria-hidden="true" style="flex: none; color: var(--ochre-fg); padding-top: 2px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.3a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1 1-1.1 1.7M12 16.8v.01"></path></svg></span>
+          <p style="font-size: 1.0625rem; color: var(--fg2);"><strong style="color: var(--fg); font-weight: 600;">Nadie sabe con certeza</strong> si un lote dejó plata.</p>
+        </li>
+      </ul>
+      <p data-reveal="" data-delay="4" style="font-size: clamp(1.125rem, 1rem + .5vw, 1.375rem); line-height: 1.45; font-weight: 500; letter-spacing: -0.01em; padding-top: 24px; border-top: 1px solid var(--border); text-wrap: pretty;">Cargá una vez, en el campo, y el margen de cada lote se arma solo. <a href="#como-funciona" style="white-space: nowrap;">Mirá cómo funciona</a></p>
+    </div>
+    <figure data-reveal="" data-delay="2" style="position: relative;">
+      <img src="assets/campo-1600.jpg" srcset="assets/campo-800.jpg 800w, assets/campo-1600.jpg 1600w" sizes="(min-width: 920px) 560px, 100vw" alt="Cosechadora trabajando en un lote de trigo, con las huellas de las pasadas en el campo." loading="lazy" decoding="async" width="1600" height="1086" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 16px; box-shadow: var(--sh2);">
+    </figure>
+  </div>
+</section>
+
+<section id="como-funciona" aria-labelledby="como-t" data-screen-label="03 Cómo funciona" style="scroll-margin-top: 68px; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10vw, 128px) clamp(20px, 5vw, 40px); display: grid; gap: clamp(48px, 6vw, 72px);">
+    <div data-reveal="" style="display: grid; gap: 14px; max-width: 40rem;">
+      <p style="font-family: var(--mono); font-size: .8125rem; letter-spacing: .08em; text-transform: uppercase; color: var(--primary);">Cómo funciona</p>
+      <h2 id="como-t" style="font-size: clamp(1.875rem, 1.3rem + 2.2vw, 2.875rem); line-height: 1.1; letter-spacing: -0.03em; font-weight: 600; text-wrap: balance;">Del lote al margen, en tres pasos.</h2>
+    </div>
+    <div style="position: relative;">
+      <div aria-hidden="true" data-desk="" style="position: absolute; left: 22px; right: 22px; top: 22px; height: 1px; background: var(--border2);"></div>
+      <div aria-hidden="true" data-desk="" data-reveal="line" style="position: absolute; left: 22px; right: 22px; top: 22px; height: 1px; background: var(--primary); transform-origin: left center;"></div>
+      <ol style="position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 40px;">
+        <li data-reveal="" data-delay="1" style="display: grid; gap: 14px; align-content: start;">
+          <span aria-hidden="true" style="display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--primary); color: var(--on-primary); font-family: var(--mono); font-weight: 500; font-size: 1rem; box-shadow: 0 0 0 6px var(--card);">1</span>
+          <h3 style="font-size: 1.25rem; font-weight: 600; letter-spacing: -0.015em; padding-top: 6px;">Cargás en el campo</h3>
+          <p style="color: var(--fg2); text-wrap: pretty;">Labores, insumos, cosechas y camiones desde el celular, con pocos campos por carga.</p>
+        </li>
+        <li data-reveal="" data-delay="3" style="display: grid; gap: 14px; align-content: start;">
+          <span aria-hidden="true" style="display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--primary); color: var(--on-primary); font-family: var(--mono); font-weight: 500; font-size: 1rem; box-shadow: 0 0 0 6px var(--card);">2</span>
+          <h3 style="font-size: 1.25rem; font-weight: 600; letter-spacing: -0.015em; padding-top: 6px;">El sistema calcula</h3>
+          <p style="color: var(--fg2); text-wrap: pretty;">Stock, costo promedio y costos por lote.</p>
+        </li>
+        <li data-reveal="" data-delay="5" style="display: grid; gap: 14px; align-content: start;">
+          <span aria-hidden="true" style="display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--primary); color: var(--on-primary); font-family: var(--mono); font-weight: 500; font-size: 1rem; box-shadow: 0 0 0 6px var(--card);">3</span>
+          <h3 style="font-size: 1.25rem; font-weight: 600; letter-spacing: -0.015em; padding-top: 6px;">Ves el margen</h3>
+          <p style="color: var(--fg2); text-wrap: pretty;">Por lote, cultivo y campaña. Cada número se abre y muestra de dónde sale.</p>
+        </li>
+      </ol>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 24px; align-items: stretch;">
+      <div data-reveal="" role="img" aria-label="Espacio reservado para una foto: productor con el celular en un lote" style="min-height: 280px; border-radius: 16px; border: 1px solid var(--border); display: grid; place-items: center; padding: 16px; background: repeating-linear-gradient(135deg, var(--stripe) 0 12px, var(--bg) 12px 24px);">
+        <span style="font-family: var(--mono); font-size: .75rem; color: var(--fg2); background: var(--card); border: 1px solid var(--border); padding: 6px 10px; border-radius: 8px; text-align: center;">foto: productor con el celular en un lote</span>
+      </div>
+      <div data-reveal="" data-delay="2" role="img" aria-label="Espacio reservado para la captura de escritorio: stock de insumos" style="border-radius: 14px; border: 1px solid var(--border); background: var(--card); box-shadow: var(--sh2); overflow: hidden; display: flex; flex-direction: column;">
+        <div aria-hidden="true" style="height: 34px; flex: none; display: flex; align-items: center; gap: 6px; padding: 0 14px; border-bottom: 1px solid var(--border); background: var(--muted);">
+          <span style="width: 9px; height: 9px; border-radius: 50%; background: var(--border2);"></span>
+          <span style="width: 9px; height: 9px; border-radius: 50%; background: var(--border2);"></span>
+          <span style="width: 9px; height: 9px; border-radius: 50%; background: var(--border2);"></span>
+        </div>
+        <div style="flex: 1; min-height: 246px; display: grid; place-items: center; padding: 16px; background: repeating-linear-gradient(135deg, var(--stripe) 0 10px, var(--card) 10px 20px);">
+          <span style="font-family: var(--mono); font-size: .75rem; color: var(--fg2); background: var(--card); border: 1px solid var(--border); padding: 6px 10px; border-radius: 8px; text-align: center;">captura: stock</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="beneficios" aria-labelledby="beneficios-t" data-screen-label="04 Beneficios" style="scroll-margin-top: 68px;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10vw, 128px) clamp(20px, 5vw, 40px); display: grid; gap: clamp(40px, 5vw, 64px);">
+    <div data-reveal="" style="display: grid; gap: 14px; max-width: 40rem;">
+      <p style="font-family: var(--mono); font-size: .8125rem; letter-spacing: .08em; text-transform: uppercase; color: var(--primary);">Beneficios</p>
+      <h2 id="beneficios-t" style="font-size: clamp(1.875rem, 1.3rem + 2.2vw, 2.875rem); line-height: 1.1; letter-spacing: -0.03em; font-weight: 600; text-wrap: balance;">Números en los que podés confiar.</h2>
+    </div>
+    <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 255px), 1fr)); gap: 20px;">
+      <li class="h6" data-reveal="" data-delay="0" style="display: grid; gap: 14px; align-content: start; padding: 28px; border-radius: 16px; background: var(--card); border: 1px solid var(--border); box-shadow: var(--sh1); transition: border-color 200ms, box-shadow 200ms;" >
+        <span aria-hidden="true" style="display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; background: var(--soft); color: var(--soft-fg);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"></path></svg></span>
+        <h3 style="font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; padding-top: 6px;">Margen por lote, auditable</h3>
+        <p style="color: var(--fg2); font-size: .9375rem; text-wrap: pretty;">Bruto y neto por lote, cultivo, campaña y hectárea. Hacés clic en una cifra y ves los movimientos que la forman.</p>
+      </li>
+      <li class="h6" data-reveal="" data-delay="1" style="display: grid; gap: 14px; align-content: start; padding: 28px; border-radius: 16px; background: var(--card); border: 1px solid var(--border); box-shadow: var(--sh1); transition: border-color 200ms, box-shadow 200ms;" >
+        <span aria-hidden="true" style="display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; background: var(--soft); color: var(--soft-fg);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7.5L12 3l8.5 4.5v9L12 21l-8.5-4.5zM3.5 7.5L12 12l8.5-4.5M12 12v9"></path></svg></span>
+        <h3 style="font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; padding-top: 6px;">Stock de insumos al día</h3>
+        <p style="color: var(--fg2); font-size: .9375rem; text-wrap: pretty;">Con costo promedio ponderado. Si la labor se carga antes que la compra, el costo se corrige solo hacia adelante.</p>
+      </li>
+      <li class="h6" data-reveal="" data-delay="2" style="display: grid; gap: 14px; align-content: start; padding: 28px; border-radius: 16px; background: var(--card); border: 1px solid var(--border); box-shadow: var(--sh1); transition: border-color 200ms, box-shadow 200ms;" >
+        <span aria-hidden="true" style="display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; background: var(--soft); color: var(--soft-fg);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M14.8 9.2c-.5-.9-1.5-1.4-2.8-1.4-1.6 0-2.8.8-2.8 2s1 1.7 2.8 2.1 2.8.9 2.8 2.1-1.2 2-2.8 2c-1.3 0-2.3-.5-2.8-1.4M12 6.5v1.3M12 16.2v1.3"></path></svg></span>
+        <h3 style="font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; padding-top: 6px;">Pesos y dólares sin confusión</h3>
+        <p style="color: var(--fg2); font-size: .9375rem; text-wrap: pretty;">Cada movimiento guarda su moneda y el tipo de cambio de ese día. El pasado nunca se recalcula con el dólar de hoy.</p>
+      </li>
+      <li class="h6" data-reveal="" data-delay="3" style="display: grid; gap: 14px; align-content: start; padding: 28px; border-radius: 16px; background: var(--card); border: 1px solid var(--border); box-shadow: var(--sh1); transition: border-color 200ms, box-shadow 200ms;" >
+        <span aria-hidden="true" style="display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; background: var(--soft); color: var(--soft-fg);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.8a15 15 0 0 1 4-2.5M22 8.8a15 15 0 0 0-8.3-3.7M5 12.9a10 10 0 0 1 5-2.7M19 12.9a10 10 0 0 0-2.8-2.4M8.5 16.4a5 5 0 0 1 7 0M12 20v.01M3 3l18 18"></path></svg></span>
+        <h3 style="font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; padding-top: 6px;">Funciona sin señal</h3>
+        <p style="color: var(--fg2); font-size: .9375rem; text-wrap: pretty;">Actividades, cosechas y camiones se guardan en el celular y se envían cuando vuelve la conexión, sin duplicar nada.</p>
+      </li>
+    </ul>
+    <div data-reveal="" role="img" aria-label="Espacio reservado para una foto: camión cargando grano" style="aspect-ratio: 21 / 8; min-height: 200px; border-radius: 16px; border: 1px solid var(--border); display: grid; place-items: center; padding: 16px; background: repeating-linear-gradient(135deg, var(--stripe) 0 12px, var(--bg) 12px 24px);">
+      <span style="font-family: var(--mono); font-size: .75rem; color: var(--fg2); background: var(--card); border: 1px solid var(--border); padding: 6px 10px; border-radius: 8px; text-align: center;">foto: camión cargando grano</span>
+    </div>
+  </div>
+</section>
+
+<section id="que-incluye" aria-labelledby="incluye-t" data-screen-label="05 Qué incluye" style="scroll-margin-top: 68px; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10vw, 128px) clamp(20px, 5vw, 40px); display: grid; gap: clamp(40px, 5vw, 56px);">
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 48px;">
+      <div data-reveal="" style="display: grid; gap: 14px; max-width: 36rem;">
+        <p style="font-family: var(--mono); font-size: .8125rem; letter-spacing: .08em; text-transform: uppercase; color: var(--primary);">Qué incluye</p>
+        <h2 id="incluye-t" style="font-size: clamp(1.875rem, 1.3rem + 2.2vw, 2.875rem); line-height: 1.1; letter-spacing: -0.03em; font-weight: 600; text-wrap: balance;">Todo esto viene en la base.</h2>
+      </div>
+      <p data-reveal="" data-delay="1" style="display: flex; gap: 10px; align-items: flex-start; max-width: 26rem; padding: 14px 18px; border-radius: 12px; background: var(--soft); color: var(--soft-fg); font-weight: 500;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>La base ya te lleva al margen. No hace falta contratar nada más.</span></p>
+    </div>
+    <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 16px;">
+      <li data-reveal="" data-delay="0" style="display: grid; gap: 10px; align-content: start; padding: 24px; border-radius: 14px; background: var(--bg); border: 1px solid var(--border);">
+        <span aria-hidden="true" style="color: var(--primary);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5"></path></svg></span>
+        <h3 style="font-size: 1.0625rem; font-weight: 600;">Estructura</h3>
+        <p style="color: var(--fg2); font-size: .9375rem;">Campos, lotes, campañas, cultivos y terceros.</p>
+      </li>
+      <li data-reveal="" data-delay="1" style="display: grid; gap: 10px; align-content: start; padding: 24px; border-radius: 14px; background: var(--bg); border: 1px solid var(--border);">
+        <span aria-hidden="true" style="color: var(--primary);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3h5"></path><path d="M10.5 3v6L5 18.2A1.7 1.7 0 0 0 6.4 21h11.2a1.7 1.7 0 0 0 1.4-2.8L13.5 9V3"></path><path d="M7.8 15h8.4"></path></svg></span>
+        <h3 style="font-size: 1.0625rem; font-weight: 600;">Insumos y stock</h3>
+        <p style="color: var(--fg2); font-size: .9375rem;">Compras, existencias y costo promedio por insumo.</p>
+      </li>
+      <li data-reveal="" data-delay="2" style="display: grid; gap: 10px; align-content: start; padding: 24px; border-radius: 14px; background: var(--bg); border: 1px solid var(--border);">
+        <span aria-hidden="true" style="color: var(--primary);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-9"></path><path d="M12 13c0-3.6-2.6-6-6.5-6 0 3.6 2.6 6 6.5 6z"></path><path d="M12 11c0-3 2.2-5.5 6.5-5.5 0 3-2.2 5.5-6.5 5.5z"></path></svg></span>
+        <h3 style="font-size: 1.0625rem; font-weight: 600;">Actividades</h3>
+        <p style="color: var(--fg2); font-size: .9375rem;">Labores e insumos aplicados en cada lote.</p>
+      </li>
+      <li data-reveal="" data-delay="3" style="display: grid; gap: 10px; align-content: start; padding: 24px; border-radius: 14px; background: var(--bg); border: 1px solid var(--border);">
+        <span aria-hidden="true" style="color: var(--primary);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5h11v10h-11z"></path><path d="M13.5 10h4.2l3.8 3.6v2.9h-8z"></path><circle cx="7" cy="18" r="1.8"></circle><circle cx="17" cy="18" r="1.8"></circle></svg></span>
+        <h3 style="font-size: 1.0625rem; font-weight: 600;">Cosecha y camiones</h3>
+        <p style="color: var(--fg2); font-size: .9375rem;">Con carta de porte por número.</p>
+      </li>
+      <li data-reveal="" data-delay="0" style="display: grid; gap: 10px; align-content: start; padding: 24px; border-radius: 14px; background: var(--bg); border: 1px solid var(--border);">
+        <span aria-hidden="true" style="color: var(--primary);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6"></path></svg></span>
+        <h3 style="font-size: 1.0625rem; font-weight: 600;">Ventas y gastos</h3>
+        <p style="color: var(--fg2); font-size: .9375rem;">Lo que entra y lo que sale, imputado a cada lote.</p>
+      </li>
+      <li data-reveal="" data-delay="1" style="display: grid; gap: 10px; align-content: start; padding: 24px; border-radius: 14px; background: var(--bg); border: 1px solid var(--border);">
+        <span aria-hidden="true" style="color: var(--primary);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"></path></svg></span>
+        <h3 style="font-size: 1.0625rem; font-weight: 600;">Costos y márgenes</h3>
+        <p style="color: var(--fg2); font-size: .9375rem;">Por lote, cultivo y campaña.</p>
+      </li>
+      <li data-reveal="" data-delay="2" style="display: grid; gap: 10px; align-content: start; padding: 24px; border-radius: 14px; background: var(--bg); border: 1px solid var(--border);">
+        <span aria-hidden="true" style="color: var(--primary);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"></path><circle cx="17.5" cy="9" r="2.5"></circle><path d="M18 14.2c2.3.4 3.5 2.4 3.5 5.3"></path></svg></span>
+        <h3 style="font-size: 1.0625rem; font-weight: 600;">Personas y permisos</h3>
+        <p style="color: var(--fg2); font-size: .9375rem;">El encargado carga sin ver costos. El contador y el asesor ven lo que les corresponde.</p>
+      </li>
+      <li data-reveal="" data-delay="3" style="display: grid; gap: 10px; align-content: start; padding: 24px; border-radius: 14px; background: var(--bg); border: 1px solid var(--border);">
+        <span aria-hidden="true" style="color: var(--primary);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg></span>
+        <h3 style="font-size: 1.0625rem; font-weight: 600;">Celular, tablet y escritorio</h3>
+        <p style="color: var(--fg2); font-size: .9375rem;">Se instala como aplicación. Modo claro y oscuro.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="extras" aria-labelledby="extras-t" data-screen-label="06 Extras" style="scroll-margin-top: 68px;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10vw, 120px) clamp(20px, 5vw, 40px); display: flex; flex-wrap: wrap; gap: clamp(32px, 5vw, 72px);">
+    <div data-reveal="" style="flex: 1 1 300px; display: grid; gap: 14px; align-content: start;">
+      <p style="font-family: var(--mono); font-size: .8125rem; letter-spacing: .08em; text-transform: uppercase; color: var(--primary);">Extras</p>
+      <h2 id="extras-t" style="font-size: clamp(1.625rem, 1.2rem + 1.6vw, 2.25rem); line-height: 1.15; letter-spacing: -0.025em; font-weight: 600; text-wrap: balance;">Y si querés más, sumás extras.</h2>
+      <p style="color: var(--fg2);">Se agregan cuando los necesitás. <a href="#extras-precios">Ver precios de los extras</a></p>
+    </div>
+    <ul style="flex: 2 1 560px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); column-gap: 40px; min-width: 0;">
+      <li data-reveal="" style="display: flex; gap: 14px; padding: 18px 0; border-top: 1px solid var(--border);">
+        <span aria-hidden="true" style="flex: none; color: var(--primary); padding-top: 2px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg></span>
+        <p style="display: grid; gap: 2px;"><strong style="font-weight: 600;">Asistente de carga</strong><span style="color: var(--fg2); font-size: .9375rem;">Cargás por chat, voz o foto de una factura y confirmás antes de guardar.</span></p>
+      </li>
+      <li data-reveal="" data-delay="1" style="display: flex; gap: 14px; padding: 18px 0; border-top: 1px solid var(--border);">
+        <span aria-hidden="true" style="flex: none; color: var(--primary); padding-top: 2px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L20 4l-5.5 16-3-6.5z"></path><path d="M11.5 13.5L20 4"></path></svg></span>
+        <p style="display: grid; gap: 2px;"><strong style="font-weight: 600;">Asistente en WhatsApp</strong><span style="color: var(--fg2); font-size: .9375rem;">El asistente de carga, desde WhatsApp.</span></p>
+      </li>
+      <li data-reveal="" style="display: flex; gap: 14px; padding: 18px 0; border-top: 1px solid var(--border);">
+        <span aria-hidden="true" style="flex: none; color: var(--primary); padding-top: 2px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1.5"></rect><rect x="13" y="3" width="8" height="5" rx="1.5"></rect><rect x="13" y="10" width="8" height="11" rx="1.5"></rect><rect x="3" y="13" width="8" height="8" rx="1.5"></rect></svg></span>
+        <p style="display: grid; gap: 2px;"><strong style="font-weight: 600;">Tablero con desvíos y Excel</strong><span style="color: var(--fg2); font-size: .9375rem;">Plan contra real.</span></p>
+      </li>
+      <li data-reveal="" data-delay="1" style="display: flex; gap: 14px; padding: 18px 0; border-top: 1px solid var(--border);">
+        <span aria-hidden="true" style="flex: none; color: var(--primary); padding-top: 2px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v10M8 10.5l4 4 4-4"></path><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg></span>
+        <p style="display: grid; gap: 2px;"><strong style="font-weight: 600;">CPE por PDF</strong><span style="color: var(--fg2); font-size: .9375rem;">Lee la carta de porte.</span></p>
+      </li>
+      <li data-reveal="" style="display: flex; gap: 14px; padding: 18px 0; border-top: 1px solid var(--border);">
+        <span aria-hidden="true" style="flex: none; color: var(--primary); padding-top: 2px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M14.8 9.2c-.5-.9-1.5-1.4-2.8-1.4-1.6 0-2.8.8-2.8 2s1 1.7 2.8 2.1 2.8.9 2.8 2.1-1.2 2-2.8 2c-1.3 0-2.3-.5-2.8-1.4M12 6.5v1.3M12 16.2v1.3"></path></svg></span>
+        <p style="display: grid; gap: 2px;"><strong style="font-weight: 600;">Cuenta corriente y pagos</strong></p>
+      </li>
+      <li data-reveal="" data-delay="1" style="display: flex; gap: 14px; padding: 18px 0; border-top: 1px solid var(--border);">
+        <span aria-hidden="true" style="flex: none; color: var(--primary); padding-top: 2px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="19" height="8" rx="4"></rect><path d="M7.5 8v8M12 8v8M16.5 8v8"></path><path d="M3 19.5h18"></path></svg></span>
+        <p style="display: grid; gap: 2px;"><strong style="font-weight: 600;">Silobolsas y silos</strong></p>
+      </li>
+      <li data-reveal="" style="display: flex; gap: 14px; padding: 18px 0; border-top: 1px solid var(--border);">
+        <span aria-hidden="true" style="flex: none; color: var(--primary); padding-top: 2px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5"></path><path d="M3.5 4v4.5H8M12 7.5V12l3 2"></path></svg></span>
+        <p style="display: grid; gap: 2px;"><strong style="font-weight: 600;">Auditoría</strong></p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="precios" aria-labelledby="precios-t" data-screen-label="07 Precios" style="scroll-margin-top: 68px; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10vw, 128px) clamp(20px, 5vw, 40px); display: grid; gap: clamp(40px, 5vw, 56px);">
+    <div data-reveal="" style="display: grid; gap: 14px; max-width: 40rem;">
+      <p style="font-family: var(--mono); font-size: .8125rem; letter-spacing: .08em; text-transform: uppercase; color: var(--primary);">Precios</p>
+      <h2 id="precios-t" style="font-size: clamp(1.875rem, 1.3rem + 2.2vw, 2.875rem); line-height: 1.1; letter-spacing: -0.03em; font-weight: 600; text-wrap: balance;">Un precio por tramo de hectáreas.</h2>
+      <p style="color: var(--fg2); font-size: 1.0625rem;">En dólares. Elegí el tramo según las hectáreas que trabajás.</p>
+    </div>
+
+    <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 20px; align-items: stretch;">
+      <li data-reveal="" data-delay="0" style="display: flex; flex-direction: column; gap: 22px; padding: 32px 28px; border-radius: 16px; background: var(--bg); border: 1px solid var(--border);">
+        <h3 style="font-size: 1.0625rem; font-weight: 600; color: var(--fg2);">Hasta 1.000 ha</h3>
+        <div style="display: grid; gap: 6px;">
+          <p style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;"><span style="font-size: 1rem; font-weight: 600; color: var(--fg2);">USD</span><span style="font-size: clamp(2.75rem, 2.2rem + 2vw, 3.5rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1;">600</span><span style="color: var(--fg2);">por año</span></p>
+          <p style="color: var(--fg2); font-size: .9375rem;">Pagando el año adelantado. Equivale a <strong style="color: var(--fg); font-weight: 600;">USD 50 por mes</strong>.</p>
+        </div>
+        <p style="padding: 12px 14px; border-radius: 10px; background: var(--muted); font-size: .9375rem;">En 12 cuotas: <strong style="font-weight: 600;">USD 60 por mes</strong></p>
+        <p style="display: flex; gap: 10px; align-items: flex-start; font-size: .9375rem; color: var(--fg2);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px; color: var(--primary);"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"></path><circle cx="17.5" cy="9" r="2.5"></circle><path d="M18 14.2c2.3.4 3.5 2.4 3.5 5.3"></path></svg><span>Incluye 2 usuarios con carga y 2 solo vista.</span></p>
+        <a class="h7" href="#contacto" data-pick="hasta-1000" style="margin-top: auto; display: flex; align-items: center; justify-content: center; min-height: 48px; border-radius: 12px; border: 1px solid var(--input); background: var(--card); color: var(--fg); font-weight: 600; text-decoration: none; transition: background-color 150ms;" >Pedí una demo<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%);"> para hasta 1.000 ha</span></a>
+      </li>
+      <li data-reveal="" data-delay="1" style="position: relative; display: flex; flex-direction: column; gap: 22px; padding: 32px 28px; border-radius: 16px; background: var(--card); border: 2px solid var(--primary); box-shadow: var(--sh3);">
+        <h3 style="font-size: 1.0625rem; font-weight: 600; color: var(--primary);">1.001 a 3.000 ha</h3>
+        <div style="display: grid; gap: 6px;">
+          <p style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;"><span style="font-size: 1rem; font-weight: 600; color: var(--fg2);">USD</span><span style="font-size: clamp(2.75rem, 2.2rem + 2vw, 3.5rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1;">1.200</span><span style="color: var(--fg2);">por año</span></p>
+          <p style="color: var(--fg2); font-size: .9375rem;">Pagando el año adelantado. Equivale a <strong style="color: var(--fg); font-weight: 600;">USD 100 por mes</strong>.</p>
+        </div>
+        <p style="padding: 12px 14px; border-radius: 10px; background: var(--soft); color: var(--soft-fg); font-size: .9375rem;">En 12 cuotas: <strong style="font-weight: 600;">USD 120 por mes</strong></p>
+        <p style="display: flex; gap: 10px; align-items: flex-start; font-size: .9375rem; color: var(--fg2);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px; color: var(--primary);"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"></path><circle cx="17.5" cy="9" r="2.5"></circle><path d="M18 14.2c2.3.4 3.5 2.4 3.5 5.3"></path></svg><span>Incluye 4 usuarios con carga y 4 solo vista.</span></p>
+        <a class="h3" href="#contacto" data-pick="1001-3000" style="margin-top: auto; display: flex; align-items: center; justify-content: center; min-height: 48px; border-radius: 12px; background: var(--primary); color: var(--on-primary); font-weight: 600; text-decoration: none; transition: background-color 150ms;" >Pedí una demo<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%);"> para 1.001 a 3.000 ha</span></a>
+      </li>
+      <li data-reveal="" data-delay="2" style="display: flex; flex-direction: column; gap: 22px; padding: 32px 28px; border-radius: 16px; background: var(--bg); border: 1px solid var(--border);">
+        <h3 style="font-size: 1.0625rem; font-weight: 600; color: var(--fg2);">3.001 a 6.000 ha</h3>
+        <div style="display: grid; gap: 6px;">
+          <p style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;"><span style="font-size: 1rem; font-weight: 600; color: var(--fg2);">USD</span><span style="font-size: clamp(2.75rem, 2.2rem + 2vw, 3.5rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1;">2.000</span><span style="color: var(--fg2);">por año</span></p>
+          <p style="color: var(--fg2); font-size: .9375rem;">Pagando el año adelantado. Equivale a <strong style="color: var(--fg); font-weight: 600;">USD 167 por mes</strong>.</p>
+        </div>
+        <p style="padding: 12px 14px; border-radius: 10px; background: var(--muted); font-size: .9375rem;">En 12 cuotas: <strong style="font-weight: 600;">USD 200 por mes</strong></p>
+        <p style="display: flex; gap: 10px; align-items: flex-start; font-size: .9375rem; color: var(--fg2);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px; color: var(--primary);"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"></path><circle cx="17.5" cy="9" r="2.5"></circle><path d="M18 14.2c2.3.4 3.5 2.4 3.5 5.3"></path></svg><span>Incluye 8 usuarios con carga y 8 solo vista.</span></p>
+        <a class="h7" href="#contacto" data-pick="3001-6000" style="margin-top: auto; display: flex; align-items: center; justify-content: center; min-height: 48px; border-radius: 12px; border: 1px solid var(--input); background: var(--card); color: var(--fg); font-weight: 600; text-decoration: none; transition: background-color 150ms;" >Pedí una demo<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%);"> para 3.001 a 6.000 ha</span></a>
+      </li>
+    </ul>
+
+    <div data-reveal="" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; padding: 24px 28px; border-radius: 16px; border: 1px dashed var(--border2);">
+      <div style="display: grid; gap: 4px;">
+        <h3 style="font-size: 1.0625rem; font-weight: 600;">Más de 6.000 ha</h3>
+        <p style="color: var(--fg2);">Armamos una propuesta a medida.</p>
+      </div>
+      <a class="h7" href="#contacto" data-pick="mas-6000" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; border-radius: 12px; border: 1px solid var(--input); background: var(--card); color: var(--fg); font-weight: 600; text-decoration: none; transition: background-color 150ms;" >Contactanos<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%);"> por una propuesta para más de 6.000 ha</span></a>
+    </div>
+
+    <div data-reveal="" style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; padding: clamp(24px, 4vw, 36px); border-radius: 16px; background: var(--ochre-bg); border: 1px solid color-mix(in srgb, var(--ochre) 40%, transparent);">
+      <span aria-hidden="true" style="flex: none; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; background: var(--card); color: var(--ochre-fg);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg></span>
+      <p style="display: grid; gap: 4px; flex: 1 1 280px;"><strong style="font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2;">Pagás 10, usás 12.</strong><span style="color: var(--fg); font-size: 1.0625rem;">Con el pago anual adelantado tenés dos meses sin cargo.</span></p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 32px; align-items: start;">
+      <div id="extras-precios" data-reveal="" style="scroll-margin-top: 88px; display: grid; gap: 16px; min-width: 0;">
+        <h3 style="font-size: 1.25rem; font-weight: 600; letter-spacing: -0.015em;">Extras</h3>
+        <div style="border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--bg);">
+          <table style="width: 100%; border-collapse: collapse; font-size: .9375rem;">
+            <caption style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%);">Precios de los extras en dólares</caption>
+            <thead>
+              <tr style="background: var(--muted);">
+                <th scope="col" style="text-align: left; padding: 12px 16px; font-weight: 600; font-size: .8125rem; color: var(--fg2);">Extra</th>
+                <th scope="col" style="text-align: right; padding: 12px 16px; font-weight: 600; font-size: .8125rem; color: var(--fg2); width: 26%;">USD por mes<br>en 12 cuotas</th>
+                <th scope="col" style="text-align: right; padding: 12px 16px; font-weight: 600; font-size: .8125rem; color: var(--fg2); width: 26%;">USD por año<br>adelantado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-top: 1px solid var(--border);"><th scope="row" style="text-align: left; padding: 12px 16px; font-weight: 500;">Asistente de carga</th><td style="text-align: right; padding: 12px 16px; font-family: var(--mono);">25</td><td style="text-align: right; padding: 12px 16px; font-family: var(--mono);">250</td></tr>
+              <tr style="border-top: 1px solid var(--border);"><th scope="row" style="text-align: left; padding: 12px 16px; font-weight: 500;">Asistente en WhatsApp <span style="display: block; font-weight: 400; font-size: .8125rem; color: var(--fg2);">Requiere el Asistente de carga</span></th><td style="text-align: right; padding: 12px 16px; font-family: var(--mono);">15</td><td style="text-align: right; padding: 12px 16px; font-family: var(--mono);">150</td></tr>
+              <tr style="border-top: 1px solid var(--border);"><th scope="row" style="text-align: left; padding: 12px 16px; font-weight: 500;">Tablero con desvíos y Excel</th><td style="text-align: right; padding: 12px 16px; font-family: var(--mono);">15</td><td style="text-align: right; padding: 12px 16px; font-family: var(--mono);">150</td></tr>
+              <tr style="border-top: 1px solid var(--border);"><th scope="row" style="text-align: left; padding: 12px 16px; font-weight: 500;">CPE por PDF</th><td style="text-align: right; padding: 12px 16px; font-family: var(--mono);">15</td><td style="text-align: right; padding: 12px 16px; font-family: var(--mono);">150</td></tr>
+              <tr style="border-top: 1px solid var(--border);"><th scope="row" style="text-align: left; padding: 12px 16px; font-weight: 500;">Cuenta corriente y pagos</th><td style="text-align: right; padding: 12px 16px; font-family: var(--mono);">15</td><td style="text-align: right; padding: 12px 16px; font-family: var(--mono);">150</td></tr>
+              <tr style="border-top: 1px solid var(--border);"><th scope="row" style="text-align: left; padding: 12px 16px; font-weight: 500;">Silobolsas y silos</th><td style="text-align: right; padding: 12px 16px; font-family: var(--mono);">10</td><td style="text-align: right; padding: 12px 16px; font-family: var(--mono);">100</td></tr>
+              <tr style="border-top: 1px solid var(--border);"><th scope="row" style="text-align: left; padding: 12px 16px; font-weight: 500;">Auditoría</th><td style="text-align: right; padding: 12px 16px; font-family: var(--mono);">10</td><td style="text-align: right; padding: 12px 16px; font-family: var(--mono);">100</td></tr>
+              <tr style="border-top: 1px solid var(--border2); background: var(--soft); color: var(--soft-fg);"><th scope="row" style="text-align: left; padding: 14px 16px; font-weight: 600;">Pack completo</th><td style="text-align: right; padding: 14px 16px; font-family: var(--mono); font-weight: 500;">80</td><td style="text-align: right; padding: 14px 16px; font-family: var(--mono); font-weight: 500;">800</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div data-reveal="" data-delay="1" style="display: grid; gap: 16px;">
+        <h3 style="font-size: 1.25rem; font-weight: 600; letter-spacing: -0.015em;">Puesta en marcha opcional <span style="font-weight: 400; color: var(--fg2);">(pago único)</span></h3>
+        <div style="display: grid; gap: 14px;">
+          <div style="display: grid; gap: 8px; padding: 22px 24px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg);">
+            <p style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;"><strong style="font-weight: 600; font-size: 1.0625rem;">Básica</strong><span style="font-weight: 600; font-size: 1.25rem; letter-spacing: -0.02em;">USD 150</span></p>
+            <p style="color: var(--fg2); font-size: .9375rem;">Importamos campos, lotes, insumos y terceros desde Excel, más 1 hora de capacitación.</p>
+          </div>
+          <div style="display: grid; gap: 8px; padding: 22px 24px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg);">
+            <p style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;"><strong style="font-weight: 600; font-size: 1.0625rem;">Completa</strong><span style="font-weight: 600; font-size: 1.25rem; letter-spacing: -0.02em;">USD 350</span></p>
+            <p style="color: var(--fg2); font-size: .9375rem;">Todo lo anterior, más stock inicial, plan de cultivo y dos capacitaciones.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ul data-reveal="" aria-label="Condiciones" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 10px 40px; padding-top: 28px; border-top: 1px solid var(--border); font-size: .875rem; color: var(--fg2);">
+      <li>Usuario adicional con carga: USD 10 por mes. Solo vista: USD 5 por mes.</li>
+      <li>Mantenimiento, hosting, actualizaciones y soporte incluidos.</li>
+      <li>Contrato anual con renovación automática. Se puede pagar el año o en 12 cuotas.</li>
+      <li>Precios en dólares, facturados en pesos al tipo de cambio del día. <mark style="background: var(--ochre-bg); color: var(--ochre-fg); border: 1px dashed var(--ochre); border-radius: 6px; padding: 1px 6px; font-family: var(--mono); font-size: .8125rem;">[completar: IVA y tipo de cambio]</mark></li>
+    </ul>
+  </div>
+</section>
+
+<section id="fundadores" aria-labelledby="fundadores-t" data-screen-label="08 Fundadores" style="scroll-margin-top: 68px; background: var(--ochre-bg);">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 9vw, 112px) clamp(20px, 5vw, 40px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: clamp(32px, 5vw, 72px); align-items: center;">
+    <div data-reveal="" style="display: grid; gap: 16px;">
+      <p style="font-family: var(--mono); font-size: .8125rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ochre-fg);">Programa de fundadores</p>
+      <h2 id="fundadores-t" style="font-size: clamp(1.875rem, 1.3rem + 2.2vw, 2.875rem); line-height: 1.12; letter-spacing: -0.03em; font-weight: 600; text-wrap: balance;">30 % de descuento el primer año para los primeros <mark style="background: var(--card); color: var(--ochre-fg); border: 1px dashed var(--ochre); border-radius: 8px; padding: 0 8px; font-family: var(--mono); font-size: .7em; vertical-align: middle;">[cupo]</mark> productores.</h2>
+      <p style="font-size: 1.0625rem;">Se suma al descuento por pago anual adelantado.</p>
+    </div>
+    <div data-reveal="" data-delay="1" style="display: grid; gap: 24px; padding: clamp(24px, 4vw, 36px); border-radius: 16px; background: var(--card); box-shadow: var(--sh2);">
+      <p style="font-weight: 600;">A cambio, te pedimos:</p>
+      <ul style="display: grid; gap: 12px;">
+        <li style="display: flex; gap: 12px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px; color: var(--primary);"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Contrato anual.</span></li>
+        <li style="display: flex; gap: 12px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px; color: var(--primary);"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Uso real durante la campaña.</span></li>
+        <li style="display: flex; gap: 12px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px; color: var(--primary);"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Tus opiniones para mejorar la aplicación.</span></li>
+      </ul>
+      <a class="h3" href="#contacto" data-preset="founder" style="justify-self: start; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 12px; background: var(--primary); color: var(--on-primary); font-weight: 600; font-size: 1.0625rem; text-decoration: none; transition: background-color 150ms;" >Quiero ser fundador<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+
+<section id="asesores" aria-labelledby="asesores-t" data-screen-label="09 Asesores" style="scroll-margin-top: 68px; background: var(--deep-bg); color: var(--deep-fg);">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10vw, 128px) clamp(20px, 5vw, 40px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: clamp(40px, 6vw, 88px); align-items: center;">
+    <div style="display: grid; gap: 28px;">
+      <div data-reveal="" style="display: grid; gap: 14px;">
+        <p style="font-family: var(--mono); font-size: .8125rem; letter-spacing: .08em; text-transform: uppercase; color: var(--deep-fg2);">Para asesores y cooperativas</p>
+        <h2 id="asesores-t" style="font-size: clamp(1.875rem, 1.3rem + 2.2vw, 2.875rem); line-height: 1.1; letter-spacing: -0.03em; font-weight: 600; text-wrap: balance;">Sumá el margen por lote a tu servicio.</h2>
+      </div>
+      <ul style="display: grid; gap: 16px;">
+        <li data-reveal="" data-delay="1" style="display: flex; gap: 12px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 4px; color: var(--deep-fg2);"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span style="font-size: 1.0625rem;">El productor firma y paga su contrato.</span></li>
+        <li data-reveal="" data-delay="2" style="display: flex; gap: 12px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 4px; color: var(--deep-fg2);"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span style="font-size: 1.0625rem;">Cobrás <strong style="font-weight: 600;">20 % de comisión el primer año</strong> de cada cliente y <strong style="font-weight: 600;">10 % en las renovaciones</strong>, sobre lo que el cliente efectivamente paga.</span></li>
+        <li data-reveal="" data-delay="3" style="display: flex; gap: 12px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 4px; color: var(--deep-fg2);"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span style="font-size: 1.0625rem;">Tenés un lugar de solo vista sin costo en la cuenta de cada cliente que trajiste.</span></li>
+        <li data-reveal="" data-delay="4" style="display: flex; gap: 12px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 4px; color: var(--deep-fg2);"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span style="font-size: 1.0625rem;">Te ayudamos con la puesta en marcha y tenés soporte directo.</span></li>
+      </ul>
+      <a class="h8" data-reveal="" data-delay="5" href="#contacto" data-preset="channel" style="justify-self: start; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 12px; background: var(--deep-btn); color: var(--deep-btn-fg); font-weight: 600; font-size: 1.0625rem; text-decoration: none; transition: background-color 150ms;" >Quiero ser canal<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+    <figure data-reveal="" data-delay="2" aria-labelledby="ejemplo-t" style="display: grid; gap: 24px; padding: clamp(24px, 4vw, 40px); border-radius: 16px; background: var(--deep-card); border: 1px solid var(--deep-line);">
+      <p id="ejemplo-t" style="font-family: var(--mono); font-size: .8125rem; letter-spacing: .08em; text-transform: uppercase; color: var(--deep-fg2);">Ejemplo</p>
+      <p style="font-size: 1.125rem; line-height: 1.5;">10 productores del tramo 1.001 a 3.000 ha con pago anual (USD 1.200 cada uno):</p>
+      <dl style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 1px; background: var(--deep-line); border-radius: 12px; overflow: hidden;">
+        <div style="display: grid; gap: 6px; padding: 20px; background: var(--deep-bg);">
+          <dd style="font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1;">USD 2.400</dd>
+          <dt style="color: var(--deep-fg2); order: 2;">el primer año</dt>
+        </div>
+        <div style="display: grid; gap: 6px; padding: 20px; background: var(--deep-bg);">
+          <dd style="font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1;">USD 1.200</dd>
+          <dt style="color: var(--deep-fg2); order: 2;">en cada renovación</dt>
+        </div>
+      </dl>
+    </figure>
+  </div>
+</section>
+
+<section id="confianza" aria-labelledby="confianza-t" data-screen-label="10 Tus datos" style="scroll-margin-top: 68px;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10vw, 128px) clamp(20px, 5vw, 40px); display: grid; gap: clamp(40px, 5vw, 56px);">
+    <div data-reveal="" style="display: grid; gap: 14px; max-width: 40rem;">
+      <p style="font-family: var(--mono); font-size: .8125rem; letter-spacing: .08em; text-transform: uppercase; color: var(--primary);">Confianza</p>
+      <h2 id="confianza-t" style="font-size: clamp(1.875rem, 1.3rem + 2.2vw, 2.875rem); line-height: 1.1; letter-spacing: -0.03em; font-weight: 600; text-wrap: balance;">Tus datos y tu control.</h2>
+    </div>
+    <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 32px 40px;">
+      <li data-reveal="" data-delay="0" style="display: grid; gap: 12px; align-content: start; padding-top: 20px; border-top: 1px solid var(--border2);">
+        <span aria-hidden="true" style="color: var(--primary);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v10M8 10.5l4 4 4-4"></path><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg></span>
+        <p style="text-wrap: pretty;"><strong style="font-weight: 600;">Tus datos son tuyos.</strong> <span style="color: var(--fg2);">Los exportás cuando quieras, aun con la cuenta en solo lectura.</span></p>
+      </li>
+      <li data-reveal="" data-delay="1" style="display: grid; gap: 12px; align-content: start; padding-top: 20px; border-top: 1px solid var(--border2);">
+        <span aria-hidden="true" style="color: var(--primary);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"></rect><path d="M9 8h.01M15 8h.01M9 12h.01M15 12h.01M10 21v-4h4v4"></path></svg></span>
+        <p style="text-wrap: pretty;"><strong style="font-weight: 600;">Cada organización ve solo sus datos.</strong></p>
+      </li>
+      <li data-reveal="" data-delay="2" style="display: grid; gap: 12px; align-content: start; padding-top: 20px; border-top: 1px solid var(--border2);">
+        <span aria-hidden="true" style="color: var(--primary);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
+        <p style="text-wrap: pretty;"><strong style="font-weight: 600;">Cada persona ve solo lo que le corresponde</strong> <span style="color: var(--fg2);">según su rol.</span></p>
+      </li>
+      <li data-reveal="" data-delay="3" style="display: grid; gap: 12px; align-content: start; padding-top: 20px; border-top: 1px solid var(--border2);">
+        <span aria-hidden="true" style="color: var(--primary);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5"></path><path d="M3.5 4v4.5H8M12 7.5V12l3 2"></path></svg></span>
+        <p style="text-wrap: pretty;"><strong style="font-weight: 600;">Todo cambio relevante queda registrado.</strong></p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="preguntas" aria-labelledby="faq-t" data-screen-label="11 Preguntas" style="scroll-margin-top: 68px; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10vw, 128px) clamp(20px, 5vw, 40px); display: flex; flex-wrap: wrap; gap: clamp(32px, 5vw, 72px); align-items: flex-start;">
+    <div data-reveal="" style="flex: 1 1 280px; display: grid; gap: 14px;">
+      <p style="font-family: var(--mono); font-size: .8125rem; letter-spacing: .08em; text-transform: uppercase; color: var(--primary);">Preguntas</p>
+      <h2 id="faq-t" style="font-size: clamp(1.875rem, 1.3rem + 2.2vw, 2.875rem); line-height: 1.1; letter-spacing: -0.03em; font-weight: 600; text-wrap: balance;">Preguntas frecuentes</h2>
+    </div>
+    <div data-reveal="" data-delay="1" style="flex: 2 1 560px; min-width: 0; border-top: 1px solid var(--border);">
+      <div style="border-bottom: 1px solid var(--border);">
+        <h3 style="font-size: inherit;"><button class="h9" id="faq-b0" type="button" aria-expanded="true" data-faq="0" aria-controls="faq-p0" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; min-height: 64px; background: none; border: 0; text-align: left; font-size: 1.0625rem; font-weight: 600; color: var(--fg); cursor: pointer;" >¿Funciona sin internet?<span aria-hidden="true" style="flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border2); color: var(--primary);"><span data-if="faqClosed0" style="display: contents" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span><span data-if="faqOpen0" style="display: contents"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path></svg></span></span></button></h3>
+        <div id="faq-p0" role="region" aria-labelledby="faq-b0" style="padding: 0 48px 22px 0; color: var(--fg2); animation: gc-fade-up 260ms cubic-bezier(.16,1,.3,1);"><p>Sí. Se cargan actividades, camiones y cosechas y se sincroniza al volver la señal. El resto se ve con lo último que abriste.</p></div>
+      </div>
+      <div style="border-bottom: 1px solid var(--border);">
+        <h3 style="font-size: inherit;"><button class="h9" id="faq-b1" type="button" aria-expanded="false" data-faq="1" aria-controls="faq-p1" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; min-height: 64px; background: none; border: 0; text-align: left; font-size: 1.0625rem; font-weight: 600; color: var(--fg); cursor: pointer;" >¿Qué pasa si dejo de pagar?<span aria-hidden="true" style="flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border2); color: var(--primary);"><span data-if="faqClosed1" style="display: contents"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span><span data-if="faqOpen1" style="display: contents" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path></svg></span></span></button></h3>
+        <div id="faq-p1" role="region" aria-labelledby="faq-b1" hidden style="padding: 0 48px 22px 0; color: var(--fg2); animation: gc-fade-up 260ms cubic-bezier(.16,1,.3,1);"><p>Tenés 15 días de gracia y después la cuenta queda en solo lectura: ves todo y exportás tus datos, pero no cargás. Al ponerte al día, volvés a cargar.</p></div>
+      </div>
+      <div style="border-bottom: 1px solid var(--border);">
+        <h3 style="font-size: inherit;"><button class="h9" id="faq-b2" type="button" aria-expanded="false" data-faq="2" aria-controls="faq-p2" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; min-height: 64px; background: none; border: 0; text-align: left; font-size: 1.0625rem; font-weight: 600; color: var(--fg); cursor: pointer;" >¿Puedo darme de baja?<span aria-hidden="true" style="flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border2); color: var(--primary);"><span data-if="faqClosed2" style="display: contents"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span><span data-if="faqOpen2" style="display: contents" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path></svg></span></span></button></h3>
+        <div id="faq-p2" role="region" aria-labelledby="faq-b2" hidden style="padding: 0 48px 22px 0; color: var(--fg2); animation: gc-fade-up 260ms cubic-bezier(.16,1,.3,1);"><p>Sí. El contrato es anual con renovación automática. La baja se pide con 30 días de aviso antes del aniversario.</p></div>
+      </div>
+      <div style="border-bottom: 1px solid var(--border);">
+        <h3 style="font-size: inherit;"><button class="h9" id="faq-b3" type="button" aria-expanded="false" data-faq="3" aria-controls="faq-p3" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; min-height: 64px; background: none; border: 0; text-align: left; font-size: 1.0625rem; font-weight: 600; color: var(--fg); cursor: pointer;" >¿Qué pasa si paso de tramo de hectáreas?<span aria-hidden="true" style="flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border2); color: var(--primary);"><span data-if="faqClosed3" style="display: contents"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span><span data-if="faqOpen3" style="display: contents" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path></svg></span></span></button></h3>
+        <div id="faq-p3" role="region" aria-labelledby="faq-b3" hidden style="padding: 0 48px 22px 0; color: var(--fg2); animation: gc-fade-up 260ms cubic-bezier(.16,1,.3,1);"><p>Se revisa en cada renovación. Si las superás durante el año, te avisamos.</p></div>
+      </div>
+      <div style="border-bottom: 1px solid var(--border);">
+        <h3 style="font-size: inherit;"><button class="h9" id="faq-b4" type="button" aria-expanded="false" data-faq="4" aria-controls="faq-p4" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; min-height: 64px; background: none; border: 0; text-align: left; font-size: 1.0625rem; font-weight: 600; color: var(--fg); cursor: pointer;" >¿Mi encargado ve los costos?<span aria-hidden="true" style="flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border2); color: var(--primary);"><span data-if="faqClosed4" style="display: contents"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span><span data-if="faqOpen4" style="display: contents" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path></svg></span></span></button></h3>
+        <div id="faq-p4" role="region" aria-labelledby="faq-b4" hidden style="padding: 0 48px 22px 0; color: var(--fg2); animation: gc-fade-up 260ms cubic-bezier(.16,1,.3,1);"><p>No, salvo que vos le des el permiso.</p></div>
+      </div>
+      <div style="border-bottom: 1px solid var(--border);">
+        <h3 style="font-size: inherit;"><button class="h9" id="faq-b5" type="button" aria-expanded="false" data-faq="5" aria-controls="faq-p5" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; min-height: 64px; background: none; border: 0; text-align: left; font-size: 1.0625rem; font-weight: 600; color: var(--fg); cursor: pointer;" >¿Puedo importar lo que ya tengo en Excel?<span aria-hidden="true" style="flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border2); color: var(--primary);"><span data-if="faqClosed5" style="display: contents"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span><span data-if="faqOpen5" style="display: contents" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path></svg></span></span></button></h3>
+        <div id="faq-p5" role="region" aria-labelledby="faq-b5" hidden style="padding: 0 48px 22px 0; color: var(--fg2); animation: gc-fade-up 260ms cubic-bezier(.16,1,.3,1);"><p>Sí, con nuestra plantilla. Está incluido en la puesta en marcha.</p></div>
+      </div>
+      <div style="border-bottom: 1px solid var(--border);">
+        <h3 style="font-size: inherit;"><button class="h9" id="faq-b6" type="button" aria-expanded="false" data-faq="6" aria-controls="faq-p6" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; min-height: 64px; background: none; border: 0; text-align: left; font-size: 1.0625rem; font-weight: 600; color: var(--fg); cursor: pointer;" >¿En qué moneda se factura?<span aria-hidden="true" style="flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border2); color: var(--primary);"><span data-if="faqClosed6" style="display: contents"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span><span data-if="faqOpen6" style="display: contents" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path></svg></span></span></button></h3>
+        <div id="faq-p6" role="region" aria-labelledby="faq-b6" hidden style="padding: 0 48px 22px 0; color: var(--fg2); animation: gc-fade-up 260ms cubic-bezier(.16,1,.3,1);"><p>Los precios están en dólares y se facturan en pesos al tipo de cambio del día.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" aria-labelledby="contacto-t" data-screen-label="12 Contacto" style="scroll-margin-top: 68px;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10vw, 128px) clamp(20px, 5vw, 40px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: clamp(40px, 6vw, 80px); align-items: start;">
+    <div style="display: grid; gap: 28px;">
+      <div data-reveal="" style="display: grid; gap: 14px;">
+        <p style="font-family: var(--mono); font-size: .8125rem; letter-spacing: .08em; text-transform: uppercase; color: var(--primary);">Contacto</p>
+        <h2 id="contacto-t" style="font-size: clamp(1.875rem, 1.3rem + 2.2vw, 2.875rem); line-height: 1.1; letter-spacing: -0.03em; font-weight: 600; text-wrap: balance;">Mirá el margen de tus lotes en una demo.</h2>
+        <p style="color: var(--fg2); font-size: 1.0625rem;">Dejanos tus datos. Te respondemos en un día hábil.</p>
+      </div>
+      <ul data-reveal="" data-delay="1" aria-label="Otras formas de contacto" style="display: grid; gap: 12px;">
+        <li style="display: flex; gap: 12px; align-items: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--primary);"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3.5 7l8.5 6 8.5-6"></path></svg><span style="color: var(--fg2);">Correo:</span><mark style="background: var(--ochre-bg); color: var(--ochre-fg); border: 1px dashed var(--ochre); border-radius: 6px; padding: 1px 6px; font-family: var(--mono); font-size: .875rem;">[correo]</mark></li>
+        <li style="display: flex; gap: 12px; align-items: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--primary);"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z"></path></svg><span style="color: var(--fg2);">Teléfono / WhatsApp:</span><mark style="background: var(--ochre-bg); color: var(--ochre-fg); border: 1px dashed var(--ochre); border-radius: 6px; padding: 1px 6px; font-family: var(--mono); font-size: .875rem;">[teléfono / WhatsApp]</mark></li>
+      </ul>
+      <div data-reveal="" data-delay="2" role="img" aria-label="Espacio reservado para una foto: campo de soja al atardecer" style="aspect-ratio: 4 / 3; border-radius: 16px; border: 1px solid var(--border); display: grid; place-items: center; padding: 16px; background: repeating-linear-gradient(135deg, var(--stripe) 0 12px, var(--bg) 12px 24px);">
+        <span style="font-family: var(--mono); font-size: .75rem; color: var(--fg2); background: var(--card); border: 1px solid var(--border); padding: 6px 10px; border-radius: 8px; text-align: center;">foto: campo de soja al atardecer</span>
+      </div>
+    </div>
+
+    <div data-reveal="" data-delay="1" style="padding: clamp(24px, 4vw, 40px); border-radius: 16px; background: var(--card); border: 1px solid var(--border); box-shadow: var(--sh3);">
+      <div data-if="notSent" style="display: contents">
+        <form novalidate data-endpoint="" aria-labelledby="form-t" style="display: grid; gap: 20px;">
+          <h3 id="form-t" style="font-size: 1.25rem; font-weight: 600; letter-spacing: -0.015em;">Pedí una demo</h3>
+          <div style="display: grid; gap: 6px;">
+            <label for="f-nombre" style="font-weight: 500; font-size: .9375rem;">Nombre</label>
+            <input id="f-nombre" name="nombre" type="text" autocomplete="name" required="" aria-invalid="false" aria-describedby="f-nombre-err" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--input); background: var(--bg); font-size: 1rem; width: 100%;">
+            <p id="f-nombre-err" style="color: var(--danger); font-size: .875rem;" data-err="nombre" hidden></p>
+          </div>
+          <div style="display: grid; gap: 6px;">
+            <label for="f-contacto" style="font-weight: 500; font-size: .9375rem;">Correo o WhatsApp</label>
+            <input id="f-contacto" name="contacto" type="text" autocomplete="email" inputmode="email" required="" aria-invalid="false" aria-describedby="f-contacto-hint f-contacto-err" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--input); background: var(--bg); font-size: 1rem; width: 100%;">
+            <p id="f-contacto-hint" style="color: var(--fg3); font-size: .8125rem;">Por ejemplo: nombre@correo.com o 11 2345 6789</p>
+            <p id="f-contacto-err" style="color: var(--danger); font-size: .875rem;" data-err="contacto" hidden></p>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 20px;">
+            <div style="display: grid; gap: 6px; align-content: start;">
+              <label for="f-ha" style="font-weight: 500; font-size: .9375rem;">Hectáreas aproximadas</label>
+              <select id="f-ha" name="ha" required="" aria-invalid="false" aria-describedby="f-ha-err" style="min-height: 48px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--input); background: var(--bg); font-size: 1rem; width: 100%;">
+                <option value="">Elegí un rango</option>
+                <option value="hasta-1000">Hasta 1.000 ha</option>
+                <option value="1001-3000">1.001 a 3.000 ha</option>
+                <option value="3001-6000">3.001 a 6.000 ha</option>
+                <option value="mas-6000">Más de 6.000 ha</option>
+              </select>
+              <p id="f-ha-err" style="color: var(--danger); font-size: .875rem;" data-err="ha" hidden></p>
+            </div>
+            <div style="display: grid; gap: 6px; align-content: start;">
+              <label for="f-prov" style="font-weight: 500; font-size: .9375rem;">Provincia</label>
+              <select id="f-prov" name="prov" required="" autocomplete="address-level1" aria-invalid="false" aria-describedby="f-prov-err" style="min-height: 48px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--input); background: var(--bg); font-size: 1rem; width: 100%;">
+                <option value="">Elegí tu provincia</option>
+                <option>Buenos Aires</option><option>Catamarca</option><option>Chaco</option><option>Chubut</option><option>Ciudad Autónoma de Buenos Aires</option><option>Córdoba</option><option>Corrientes</option><option>Entre Ríos</option><option>Formosa</option><option>Jujuy</option><option>La Pampa</option><option>La Rioja</option><option>Mendoza</option><option>Misiones</option><option>Neuquén</option><option>Río Negro</option><option>Salta</option><option>San Juan</option><option>San Luis</option><option>Santa Cruz</option><option>Santa Fe</option><option>Santiago del Estero</option><option>Tierra del Fuego</option><option>Tucumán</option>
+              </select>
+              <p id="f-prov-err" style="color: var(--danger); font-size: .875rem;" data-err="prov" hidden></p>
+            </div>
+          </div>
+          <fieldset aria-describedby="f-soy-err" style="border: 0; margin: 0; padding: 0; display: grid; gap: 10px; min-width: 0;">
+            <legend style="font-weight: 500; font-size: .9375rem; padding: 0; margin-bottom: 10px;">Soy</legend>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <label style="display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--input); background: var(--bg); cursor: pointer;"><input id="f-soy" type="radio" name="soy" value="productor" style="width: 18px; height: 18px; accent-color: var(--primary); margin: 0;">Productor</label>
+              <label style="display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--input); background: var(--bg); cursor: pointer;"><input type="radio" name="soy" value="asesor" style="width: 18px; height: 18px; accent-color: var(--primary); margin: 0;">Asesor o ingeniero</label>
+              <label style="display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--input); background: var(--bg); cursor: pointer;"><input type="radio" name="soy" value="cooperativa" style="width: 18px; height: 18px; accent-color: var(--primary); margin: 0;">Cooperativa</label>
+            </div>
+            <p id="f-soy-err" style="color: var(--danger); font-size: .875rem;" data-err="soy" hidden></p>
+          </fieldset>
+          <div style="display: grid; gap: 6px;">
+            <label for="f-msg" style="font-weight: 500; font-size: .9375rem;">Mensaje <span style="font-weight: 400; color: var(--fg3);">(opcional)</span></label>
+            <textarea id="f-msg" name="msg" rows="3" style="padding: 12px 14px; border-radius: 10px; border: 1px solid var(--input); background: var(--bg); font-size: 1rem; width: 100%; resize: vertical; min-height: 96px;"></textarea>
+          </div>
+          <button class="h10" type="submit" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; border-radius: 12px; border: 0; background: var(--primary); color: var(--on-primary); font-weight: 600; font-size: 1.0625rem; transition: background-color 150ms; cursor: pointer;" >Pedí una demo</button>
+          <p style="text-align: center; color: var(--fg3); font-size: .875rem;">Te respondemos en un día hábil.</p>
+        </form>
+      </div>
+      <div data-if="sent" style="display: contents" hidden>
+        <div id="form-ok" role="status" tabindex="-1" style="display: grid; gap: 16px; justify-items: start; padding: 8px 0; outline: none; animation: gc-fade-up 400ms cubic-bezier(.16,1,.3,1);">
+          <span aria-hidden="true" style="display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--soft); color: var(--soft-fg);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+          <h3 style="font-size: 1.375rem; font-weight: 600; letter-spacing: -0.02em;">¡Gracias, <span data-name></span>!</h3>
+          <p style="color: var(--fg2); font-size: 1.0625rem;">Recibimos tus datos. Te respondemos en un día hábil para coordinar la demo.</p>
+          <button class="h11" type="button" data-reset-form style="min-height: 44px; padding: 0 18px; border-radius: 12px; border: 1px solid var(--input); background: var(--card); color: var(--fg); font-weight: 600; cursor: pointer;" >Enviar otra consulta</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer data-screen-label="13 Pie" style="border-top: 1px solid var(--border); background: var(--card);">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(48px, 7vw, 72px) clamp(20px, 5vw, 40px) 32px; display: grid; gap: 40px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 32px;">
+      <div style="display: grid; gap: 12px; align-content: start;">
+        <a href="#inicio" aria-label="Gestión de Campo, volver al inicio" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--fg);">
+          <img src="assets/favicon.svg" alt="" width="32" height="32" style="display: block; width: 32px; height: 32px;">
+          <span style="font-weight: 600;">Gestión de Campo</span>
+        </a>
+        <p style="color: var(--fg2); font-size: .9375rem; max-width: 18rem;">Margen por lote para productores de agricultura extensiva.</p>
+      </div>
+      <nav aria-label="Secciones" style="display: grid; gap: 10px; align-content: start;">
+        <p style="font-weight: 600; font-size: .875rem;">Secciones</p>
+        <a class="h12" href="#como-funciona" style="color: var(--fg2); text-decoration: none; font-size: .9375rem;" >Cómo funciona</a>
+        <a class="h12" href="#que-incluye" style="color: var(--fg2); text-decoration: none; font-size: .9375rem;" >Qué incluye</a>
+        <a class="h12" href="#precios" style="color: var(--fg2); text-decoration: none; font-size: .9375rem;" >Precios</a>
+        <a class="h12" href="#asesores" style="color: var(--fg2); text-decoration: none; font-size: .9375rem;" >Asesores</a>
+        <a class="h12" href="#preguntas" style="color: var(--fg2); text-decoration: none; font-size: .9375rem;" >Preguntas frecuentes</a>
+      </nav>
+      <div style="display: grid; gap: 10px; align-content: start;">
+        <p style="font-weight: 600; font-size: .875rem;">Contacto</p>
+        <p><mark style="background: var(--ochre-bg); color: var(--ochre-fg); border: 1px dashed var(--ochre); border-radius: 6px; padding: 1px 6px; font-family: var(--mono); font-size: .8125rem;">[correo]</mark></p>
+        <p><mark style="background: var(--ochre-bg); color: var(--ochre-fg); border: 1px dashed var(--ochre); border-radius: 6px; padding: 1px 6px; font-family: var(--mono); font-size: .8125rem;">[teléfono / WhatsApp]</mark></p>
+        <a href="#contacto" style="font-size: .9375rem;">Pedí una demo</a>
+      </div>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; padding-top: 24px; border-top: 1px solid var(--border); font-size: .875rem; color: var(--fg2);">
+      <p style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">© 2026 Gestión de Campo<mark style="background: var(--ochre-bg); color: var(--ochre-fg); border: 1px dashed var(--ochre); border-radius: 6px; padding: 1px 6px; font-family: var(--mono); font-size: .8125rem;">[Razón social · CUIT]</mark></p>
+      <nav aria-label="Legal" style="display: flex; gap: 20px;">
+        <a class="h13" href="#terminos" style="color: var(--fg2);" >Términos</a>
+        <a class="h13" href="#privacidad" style="color: var(--fg2);" >Privacidad</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js" defer></script>
+</body>
+</html>
