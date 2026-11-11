@@ -2,7 +2,7 @@
 
 Landing page de **Gestión de Campo**, aplicación de gestión para productores de agricultura extensiva (margen por lote, stock con costo promedio, carga sin señal).
 
-Sitio estático: HTML + CSS + JavaScript puro, sin build ni dependencias. Modo claro/oscuro: sigue el del sistema y tiene un botón en la barra superior que recuerda la elección (`localStorage`, clave `gc-theme`), accesible (WCAG AA) y con `prefers-reduced-motion`.
+Sitio estático: HTML + CSS + JavaScript puro, sin build ni dependencias. Modo claro/oscuro: sigue el del sistema y tiene un botón en la barra superior que recuerda la elección (`localStorage`, clave `gc-theme`). Accesible (WCAG AA) y con `prefers-reduced-motion`.
 
 ## Estructura
 
@@ -23,7 +23,7 @@ Abrir http://localhost:5173.
 
 ## Pendientes de contenido
 
-Buscar en `index.html` los textos entre corchetes, resaltados en ocre: `[correo]`, `[teléfono / WhatsApp]`, `[completar: IVA y tipo de cambio]`, `[cupo]` y `[Razón social · CUIT]`. También faltan las páginas de Términos y Privacidad (`#terminos`, `#privacidad`) y las fotos marcadas como espacio reservado.
+Buscar en `index.html` los textos entre corchetes, resaltados en ocre: `[correo]`, `[teléfono / WhatsApp]`, `[completar: IVA y tipo de cambio]`, `[cupo]` y `[Razón social · CUIT]`. También faltan las páginas de Términos y Privacidad (`#terminos`, `#privacidad`).
 
 ## Capturas de la aplicación
 

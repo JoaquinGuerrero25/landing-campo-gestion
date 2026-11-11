@@ -51,7 +51,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* Barra superior en celular: nada se parte en dos líneas */
 .brand-name,.cta-mob{white-space:nowrap}
-@media (max-width:419px){.brand-name{display:none}}
+@media (max-width:499px){.brand-name{display:none}}
 
 /* Botón de modo claro/oscuro */
 .theme-btn{display:grid;place-items:center;width:44px;height:44px;padding:0;border-radius:12px;border:1px solid var(--border2);background:var(--card);color:var(--fg);cursor:pointer;transition:background-color 150ms,border-color 150ms}
@@ -66,3 +66,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .img-dark{display:block!important}:root:not([data-theme="light"]) .img-light{display:none!important}}
 :root[data-theme="dark"] .img-dark{display:block!important}
 :root[data-theme="dark"] .img-light{display:none!important}
+@media (max-width:339px){
+  .cta-mob{padding:0 10px!important;font-size:.8125rem!important}
+  .theme-btn,#menu-btn{width:40px!important;height:40px!important}
+  [data-mob]{gap:6px!important}
+}
