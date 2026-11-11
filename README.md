@@ -1,8 +1,8 @@
-# Gestión de Campo — Landing
+# Certera Agro — Landing
 
-Landing page de **Gestión de Campo**, aplicación de gestión para productores de agricultura extensiva (margen por lote, stock con costo promedio, carga sin señal).
+Landing page de **Certera Agro**, aplicación de gestión para productores de agricultura extensiva (margen por lote, stock con costo promedio, carga sin señal).
 
-Sitio estático: HTML + CSS + JavaScript puro, sin build ni dependencias. Modo claro/oscuro: sigue el del sistema y tiene un botón en la barra superior que recuerda la elección (`localStorage`, clave `gc-theme`). Accesible (WCAG AA) y con `prefers-reduced-motion`.
+Sitio estático: HTML + CSS + JavaScript puro, sin build ni dependencias. Modo claro/oscuro: sigue el del sistema y tiene un botón en la barra superior que recuerda la elección (`localStorage`, clave `gc-theme`, se conserva del nombre anterior para no perder la elección de quien ya la tenga). Accesible (WCAG AA) y con `prefers-reduced-motion`.
 
 ## Estructura
 

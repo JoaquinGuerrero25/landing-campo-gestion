@@ -1,4 +1,4 @@
-/* Gestión de Campo — landing. JS puro, sin dependencias. */
+/* Certera Agro — landing. JS puro, sin dependencias. */
 (() => {
   'use strict';
 

@@ -71,3 +71,5 @@ button,input,select,textarea{font:inherit;color:inherit}
   .theme-btn,#menu-btn{width:40px!important;height:40px!important}
   [data-mob]{gap:6px!important}
 }
+
+.soon{display:inline-block;margin-left:8px;padding:1px 9px;border-radius:999px;background:var(--ochre-bg);color:var(--ochre-fg);border:1px solid color-mix(in srgb,var(--ochre) 45%,transparent);font-size:.75rem;font-weight:500;line-height:1.5;vertical-align:1px;white-space:nowrap}
