@@ -31,3 +31,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 .h11:hover{background: var(--muted) !important}
 .h12:hover{color: var(--fg) !important;text-decoration: underline !important}
 .h13:hover{color: var(--fg) !important}
+
+/* Marco del celular del hero: más fino cuando la pantalla es chica */
+:root{--bezel-w:6px;--bezel-r:26px}
+@media (max-width:919px){:root{--bezel-w:4px;--bezel-r:22px}}
+@media (max-width:520px){:root{--bezel-w:2.5px;--bezel-r:16px}}
+
+/* Captura de stock: sin recorte en celular; en escritorio llena la altura de la columna */
+@media (min-width:920px){.shot-stock{min-height:246px}}
