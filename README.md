@@ -23,7 +23,13 @@ Abrir http://localhost:5173.
 
 ## Pendientes de contenido
 
-Buscar en `index.html` los textos entre corchetes, resaltados en ocre: `[correo]`, `[teléfono / WhatsApp]`, `[completar: IVA y tipo de cambio]`, `[cupo]` y `[Razón social · CUIT]`. También faltan las páginas de Términos y Privacidad (`#terminos`, `#privacidad`) y las capturas/fotos marcadas como espacio reservado.
+Buscar en `index.html` los textos entre corchetes, resaltados en ocre: `[correo]`, `[teléfono / WhatsApp]`, `[completar: IVA y tipo de cambio]`, `[cupo]` y `[Razón social · CUIT]`. También faltan las páginas de Términos y Privacidad (`#terminos`, `#privacidad`) y las fotos marcadas como espacio reservado.
+
+## Capturas de la aplicación
+
+`assets/app-margen.webp`, `app-stock.webp` y `app-celular.webp` son capturas reales de la aplicación con los datos ficticios de su demostración (organización «Agropecuaria Los Ñandúes SA (demo)», campaña 2024/25). Se generaron con `pnpm --filter @campo/api demo:seed` sobre una base aparte, la API y el cliente en modo claro, y Chrome en 1440×900 (escritorio) y 390×823 a 2× (celular). Para actualizarlas, repetir ese proceso y reemplazar los archivos.
+
+Siguen como espacio reservado las tres fotos (productor con el celular, camión cargando grano, campo de soja al atardecer): hay que reemplazarlas por fotos reales.
 
 ## Formulario
 
