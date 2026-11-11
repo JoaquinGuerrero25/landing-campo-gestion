@@ -79,3 +79,63 @@ button,input,select,textarea{font:inherit;color:inherit}
 .to-top.is-visible{opacity:1;visibility:visible;transform:none;transition-delay:0s}
 .to-top:hover{background:var(--primary-hover)}
 .to-top:active{transform:scale(.94)}
+
+/* ===== Preguntas frecuentes: mismo Collapse que la app (fila de grid 0fr -> 1fr, 250 ms, ease-inout) ===== */
+.collapse{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows 250ms cubic-bezier(.4,0,.2,1),opacity 250ms cubic-bezier(.4,0,.2,1),visibility 250ms cubic-bezier(.4,0,.2,1)}
+.collapse.is-open{grid-template-rows:1fr;opacity:1;visibility:visible}
+.collapse-inner{min-height:0;overflow:hidden}
+
+/* ===== Controles de formulario: idénticos a los de la app (components/ui/control.ts, field.tsx, select.tsx) ===== */
+:root{--hover:#efede6;--app-border:#dcd8ce}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--hover:#2b2823;--app-border:#3a362f}}
+:root[data-theme="dark"]{--hover:#2b2823;--app-border:#3a362f}
+
+.gc-field{display:flex;flex-direction:column;gap:6px;width:100%;min-width:0}
+.gc-label-row{display:flex;align-items:center;gap:4px;min-height:24px}
+.gc-label{display:flex;align-items:baseline;gap:6px;font:500 13px/20px var(--sans);color:var(--fg)}
+.gc-opt{font:400 13px/20px var(--sans);color:var(--fg3)}
+.gc-ctl{position:relative;display:flex;align-items:center}
+.gc-control{width:100%;min-height:44px;border-radius:10px;border:1px solid var(--input);background:var(--card);padding:0 14px;font:400 16px/24px var(--sans);color:var(--fg);transition:border-color 150ms cubic-bezier(.16,1,.3,1),box-shadow 150ms cubic-bezier(.16,1,.3,1)}
+.gc-control:hover{border-color:var(--fg2)}
+.gc-control:focus{border-color:var(--ring);box-shadow:0 0 0 3px var(--soft);outline:none}
+.gc-input{height:44px}
+.gc-textarea{resize:vertical;padding:10px 14px}
+.gc-ctl{align-items:stretch}
+.gc-msg{display:flex;flex-direction:column;gap:2px}
+.gc-hint{font:400 13px/20px var(--sans);color:var(--fg2)}
+.gc-error{display:flex;align-items:flex-start;gap:6px;font:400 13px/20px var(--sans);color:var(--danger);animation:gc-fade-up 200ms cubic-bezier(.16,1,.3,1) both}
+.gc-error[hidden]{display:none}
+.gc-error svg{flex:none;margin-top:3px}
+
+/* Select: en celular el nativo (como en la app); con mouse, el propio */
+.gc-native{appearance:none;-webkit-appearance:none;padding-right:40px;cursor:pointer}
+.gc-native-chev{position:absolute;top:14px;right:14px;pointer-events:none;color:var(--fg2);flex:none}
+.gc-trigger{display:none;align-items:center;justify-content:space-between;gap:8px;text-align:left;cursor:pointer}
+.gc-trigger-text{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gc-trigger .gc-chev{flex:none;color:var(--fg2);transition:transform 150ms}
+.gc-trigger[aria-expanded="true"] .gc-chev{transform:rotate(180deg)}
+@media (hover:hover) and (pointer:fine){
+  .gc-select.is-custom .gc-native,.gc-select.is-custom .gc-native-chev{display:none}
+  .gc-select.is-custom .gc-trigger{display:flex}
+}
+
+/* Lista del select (Radix Select de la app) */
+.gc-listbox{position:fixed;z-index:60;min-width:180px;overflow:hidden;border-radius:12px;border:1px solid var(--app-border);background:var(--card);box-shadow:var(--sh2);outline:none}
+.gc-listbox[data-state="open"]{animation:gc-pop-in 200ms cubic-bezier(.16,1,.3,1) both}
+.gc-listbox[data-state="closed"]{animation:gc-fade-out 120ms cubic-bezier(.4,0,1,1) both}
+.gc-viewport{max-height:inherit;overflow-y:auto;padding:6px;scrollbar-width:thin;scrollbar-color:var(--border2) transparent}
+.gc-item{position:relative;display:flex;align-items:center;gap:10px;min-height:44px;padding:8px 36px 8px 12px;border-radius:10px;font:400 14px/22px var(--sans);color:var(--fg);cursor:pointer;user-select:none;outline:none}
+.gc-item[data-highlighted]{background:var(--hover)}
+.gc-item[aria-selected="true"]{font-weight:500}
+.gc-item[aria-disabled="true"]{cursor:not-allowed;color:var(--fg3)}
+.gc-item-check{position:absolute;right:12px;display:flex;align-items:center;color:var(--primary)}
+@keyframes gc-pop-in{from{opacity:0;transform:translateY(-4px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes gc-fade-out{from{opacity:1}to{opacity:0}}
+
+/* Opciones de "Soy": las tarjetas de elección de la app (radiogroup de botones) */
+.gc-choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr));gap:8px}
+.gc-choice{position:relative;display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 12px;border-radius:12px;border:1px solid var(--app-border);background:var(--card);color:var(--fg);font:500 13px/20px var(--sans);text-align:center;cursor:pointer;transition:background-color 150ms,color 150ms,border-color 150ms}
+.gc-choice:not(:has(input:checked)):hover{background:var(--muted)}
+.gc-choice:has(input:checked){border-color:var(--primary);background:var(--soft);color:var(--soft-fg)}
+.gc-choice:has(input:focus-visible){outline:2px solid var(--ring);outline-offset:2px}
+.gc-sr{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}

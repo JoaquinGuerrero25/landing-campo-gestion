@@ -9,7 +9,8 @@ Sitio estático: HTML + CSS + JavaScript puro, sin build ni dependencias. Modo c
 ```
 index.html        Contenido y SEO (meta, Open Graph, JSON-LD)
 css/styles.css    Variables de diseño, base y estados hover/focus
-js/main.js        Menú móvil, FAQ, formulario y animaciones de entrada
+js/main.js        Menú móvil, FAQ, formulario, modo claro/oscuro, volver arriba y animaciones de entrada
+js/select.js      Select propio (igual al de la app): lista, teclado y escribir para saltar
 assets/           Logo, íconos y fotos
 ```
 
@@ -42,6 +43,9 @@ Las tres fotos son de [Pexels](https://www.pexels.com/license/) (uso libre, incl
 `assets/campo-800.jpg` y `campo-1600.jpg` (cosechadora en el lote) vienen del diseño original.
 
 ## Formulario
+
+Los controles (inputs, textarea, select con su lista y las tarjetas de «Soy») replican los de la aplicación (`apps/web/src/components/ui/control.ts`, `field.tsx` y `select.tsx`): mismas medidas, colores, foco y animaciones, en modo claro y oscuro. Con mouse se usa el select propio; en celular, el nativo, como en la app. Las preguntas frecuentes se abren con el mismo `Collapse` de la app (altura animada, 250 ms).
+
 
 Por defecto solo valida y muestra la confirmación. Para recibir los datos, poner la URL de un servicio (Formspree, Getform, un webhook propio) en `data-endpoint` del `<form>`: se envía un POST con JSON.
 

@@ -3,6 +3,7 @@
   'use strict';
 
   const FAQ_COUNT = 7;
+  const ALERT_ICON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5h-19z"/><path d="M12 10v4.5M12 17.5v.01"/></svg>';
   const EMPTY = { nombre: '', contacto: '', ha: '', prov: '', soy: '', msg: '' };
   const state = { menu: false, faq: { 0: true }, f: { ...EMPTY }, err: {}, sent: false };
 
@@ -31,12 +32,24 @@
       const p = document.getElementById('faq-p' + i);
       if (!b || !p) continue;
       b.setAttribute('aria-expanded', String(!!state.faq[i]));
-      p.hidden = !state.faq[i];
+      const isOpen = !!state.faq[i];
+      p.classList.toggle('is-open', isOpen);
+      p.inert = !isOpen;
+      if (isOpen) p.removeAttribute('aria-hidden'); else p.setAttribute('aria-hidden', 'true');
     }
 
     $$('[data-err]').forEach((el) => {
       const msg = state.err[el.dataset.err];
-      el.textContent = msg || '';
+      if (el.dataset.shown !== (msg || '')) {
+        el.replaceChildren();
+        if (msg) {
+          el.insertAdjacentHTML('beforeend', ALERT_ICON);
+          const s = document.createElement('span');
+          s.textContent = msg;
+          el.append(s);
+        }
+        el.dataset.shown = msg || '';
+      }
       el.hidden = !msg;
     });
     ['nombre', 'contacto', 'ha', 'prov'].forEach((k) => {
@@ -78,7 +91,12 @@
 
   function syncFieldsFromState() {
     if (!form) return;
-    ['nombre', 'contacto', 'ha', 'prov', 'msg'].forEach((k) => { if (form.elements[k]) form.elements[k].value = state.f[k]; });
+    ['nombre', 'contacto', 'ha', 'prov', 'msg'].forEach((k) => {
+      const el = form.elements[k];
+      if (!el) return;
+      el.value = state.f[k];
+      if (el._gcSync) el._gcSync();
+    });
     $$('input[name="soy"]', form).forEach((r) => { r.checked = r.value === state.f.soy; });
   }
 
