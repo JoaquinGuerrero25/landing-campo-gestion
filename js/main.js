@@ -203,6 +203,25 @@
   systemDark.addEventListener ? systemDark.addEventListener('change', onSystemTheme) : systemDark.addListener(onSystemTheme);
   syncThemeButtons();
 
+  /* ---------- volver arriba ---------- */
+  const toTop = $('[data-to-top]');
+  if (toTop) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let ticking = false;
+    const updateToTop = () => {
+      ticking = false;
+      toTop.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.9);
+    };
+    window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(updateToTop); } }, { passive: true });
+    toTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+      // Quien navega con teclado sigue desde el principio de la página.
+      const logo = $('header a[href="#inicio"]');
+      if (logo) logo.focus({ preventScroll: true });
+    });
+    updateToTop();
+  }
+
   /* ---------- movimiento ---------- */
   function setupMotion() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !Element.prototype.animate) return;
