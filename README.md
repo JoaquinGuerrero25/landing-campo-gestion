@@ -29,7 +29,17 @@ Buscar en `index.html` los textos entre corchetes, resaltados en ocre: `[correo]
 
 `assets/app-margen.webp`, `app-stock.webp` y `app-celular.webp` son capturas reales de la aplicación con los datos ficticios de su demostración (organización «Agropecuaria Los Ñandúes SA (demo)», campaña 2024/25, en modo oscuro). Se generaron con `pnpm --filter @campo/api demo:seed` sobre una base aparte, la API y el cliente, y Chrome en 1440×900 a 2× (escritorio, 2880×1800) y 390×823 a 3× (celular). Para actualizarlas, repetir ese proceso y reemplazar los archivos.
 
-Siguen como espacio reservado las tres fotos (productor con el celular, camión cargando grano, campo de soja al atardecer): hay que reemplazarlas por fotos reales.
+## Fotos
+
+Las tres fotos son de [Pexels](https://www.pexels.com/license/) (uso libre, incluso comercial; no exige atribución, se acredita igual). Son imágenes de referencia, no de Argentina: conviene reemplazarlas por fotos propias cuando las haya.
+
+| Archivo | Foto | Autor |
+| --- | --- | --- |
+| `assets/foto-productor.webp` | [Man wearing hat holding black smartphone](https://www.pexels.com/photo/man-wearing-hat-holding-black-smartphone-4894561/) | Gustavo Fring |
+| `assets/foto-camion.webp` | [Harvesting process with grain cart and truck in field](https://www.pexels.com/photo/harvesting-process-with-grain-cart-and-truck-in-field-28757609/) | Kurt Hudspeth |
+| `assets/foto-atardecer.webp` | [Combine harvester and tractor with trailer on field at sunset](https://www.pexels.com/photo/combine-harvester-and-tractor-with-trailer-on-field-at-sunset-9940120/) | Tom Fisk |
+
+`assets/campo-800.jpg` y `campo-1600.jpg` (cosechadora en el lote) vienen del diseño original.
 
 ## Formulario
 

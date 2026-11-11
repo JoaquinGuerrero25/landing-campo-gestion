@@ -35,7 +35,7 @@
   <div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 40px); height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px;">
     <a href="#inicio" aria-label="Gestión de Campo, ir al inicio" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--fg);">
       <img src="assets/favicon.svg" alt="" width="34" height="34" style="display: block; width: 34px; height: 34px;">
-      <span style="font-weight: 600; font-size: 1.0625rem; letter-spacing: -0.01em;">Gestión de Campo</span>
+      <span class="brand-name" style="font-weight: 600; font-size: 1.0625rem; letter-spacing: -0.01em;">Gestión de Campo</span>
     </a>
     <nav aria-label="Principal" data-desk="" style="display: flex; align-items: center; gap: 4px;">
       <a class="h2" href="#como-funciona" style="color: var(--fg2); text-decoration: none; font-size: .9375rem; font-weight: 500; padding: 10px 12px; border-radius: 10px; transition: color 150ms, background-color 150ms;" >Cómo funciona</a>
@@ -45,7 +45,7 @@
       <a class="h3" href="#contacto" style="margin-left: 12px; display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 12px; background: var(--primary); color: var(--on-primary); font-weight: 600; font-size: .9375rem; text-decoration: none; transition: background-color 150ms;" >Pedí una demo</a>
     </nav>
     <div data-mob="" style="display: flex; align-items: center; gap: 8px;">
-      <a class="h3" href="#contacto" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 12px; background: var(--primary); color: var(--on-primary); font-weight: 600; font-size: .9375rem; text-decoration: none;" >Pedí una demo</a>
+      <a class="h3 cta-mob" href="#contacto" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 12px; background: var(--primary); color: var(--on-primary); font-weight: 600; font-size: .9375rem; text-decoration: none;" >Pedí una demo</a>
       <button id="menu-btn" type="button" aria-controls="menu-movil" aria-expanded="false" aria-label="Menú" data-toggle-menu style="display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--border2); background: var(--card); color: var(--fg); padding: 0;">
         <span data-if="menuClosed" style="display: contents"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></span>
         <span data-if="menuOpen" style="display: contents" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></span>
@@ -168,9 +168,7 @@
       </ol>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 24px; align-items: stretch;">
-      <div data-reveal="" role="img" aria-label="Espacio reservado para una foto: productor con el celular en un lote" style="min-height: 280px; border-radius: 16px; border: 1px solid var(--border); display: grid; place-items: center; padding: 16px; background: repeating-linear-gradient(135deg, var(--stripe) 0 12px, var(--bg) 12px 24px);">
-        <span style="font-family: var(--mono); font-size: .75rem; color: var(--fg2); background: var(--card); border: 1px solid var(--border); padding: 6px 10px; border-radius: 8px; text-align: center;">foto: productor con el celular en un lote</span>
-      </div>
+      <div data-reveal="" style="position: relative; overflow: hidden; min-height: 280px; border-radius: 16px; border: 1px solid var(--border); background: var(--muted);"><img src="assets/foto-productor.webp" alt="Productor con sombrero mirando su celular al aire libre." width="1400" height="933" loading="lazy" decoding="async" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 58% 30%;"></div>
       <div data-reveal="" data-delay="2" style="border-radius: 14px; border: 1px solid var(--border); background: var(--card); box-shadow: var(--sh2); overflow: hidden; display: flex; flex-direction: column;">
         <div aria-hidden="true" style="height: 34px; flex: none; display: flex; align-items: center; gap: 6px; padding: 0 14px; border-bottom: 1px solid var(--border); background: var(--muted);">
           <span style="width: 9px; height: 9px; border-radius: 50%; background: var(--border2);"></span>
@@ -211,9 +209,7 @@
         <p style="color: var(--fg2); font-size: .9375rem; text-wrap: pretty;">Actividades, cosechas y camiones se guardan en el celular y se envían cuando vuelve la conexión, sin duplicar nada.</p>
       </li>
     </ul>
-    <div data-reveal="" role="img" aria-label="Espacio reservado para una foto: camión cargando grano" class="photo-wide" style="border-radius: 16px; border: 1px solid var(--border); display: grid; place-items: center; padding: 16px; background: repeating-linear-gradient(135deg, var(--stripe) 0 12px, var(--bg) 12px 24px);">
-      <span style="font-family: var(--mono); font-size: .75rem; color: var(--fg2); background: var(--card); border: 1px solid var(--border); padding: 6px 10px; border-radius: 8px; text-align: center;">foto: camión cargando grano</span>
-    </div>
+    <div data-reveal="" class="photo-wide" style="position: relative; overflow: hidden; border-radius: 16px; border: 1px solid var(--border); background: var(--muted);"><img src="assets/foto-camion.webp" alt="Carro granelero descargando grano en un camión durante la cosecha." width="1800" height="1200" loading="lazy" decoding="async" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%;"></div>
   </div>
 </section>
 
@@ -545,9 +541,7 @@
         <li style="display: flex; gap: 12px; align-items: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--primary);"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3.5 7l8.5 6 8.5-6"></path></svg><span style="color: var(--fg2);">Correo:</span><mark style="background: var(--ochre-bg); color: var(--ochre-fg); border: 1px dashed var(--ochre); border-radius: 6px; padding: 1px 6px; font-family: var(--mono); font-size: .875rem;">[correo]</mark></li>
         <li style="display: flex; gap: 12px; align-items: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--primary);"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z"></path></svg><span style="color: var(--fg2);">Teléfono / WhatsApp:</span><mark style="background: var(--ochre-bg); color: var(--ochre-fg); border: 1px dashed var(--ochre); border-radius: 6px; padding: 1px 6px; font-family: var(--mono); font-size: .875rem;">[teléfono / WhatsApp]</mark></li>
       </ul>
-      <div data-reveal="" data-delay="2" role="img" aria-label="Espacio reservado para una foto: campo de soja al atardecer" style="aspect-ratio: 4 / 3; border-radius: 16px; border: 1px solid var(--border); display: grid; place-items: center; padding: 16px; background: repeating-linear-gradient(135deg, var(--stripe) 0 12px, var(--bg) 12px 24px);">
-        <span style="font-family: var(--mono); font-size: .75rem; color: var(--fg2); background: var(--card); border: 1px solid var(--border); padding: 6px 10px; border-radius: 8px; text-align: center;">foto: campo de soja al atardecer</span>
-      </div>
+      <div data-reveal="" data-delay="2" style="position: relative; overflow: hidden; aspect-ratio: 4 / 3; border-radius: 16px; border: 1px solid var(--border); background: var(--muted);"><img src="assets/foto-atardecer.webp" alt="Cosecha al atardecer: una cosechadora y un carro granelero en el lote con el sol bajo." width="1400" height="1128" loading="lazy" decoding="async" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%;"></div>
     </div>
 
     <div data-reveal="" data-delay="1" style="padding: clamp(24px, 4vw, 40px); border-radius: 16px; background: var(--card); border: 1px solid var(--border); box-shadow: var(--sh3);">
