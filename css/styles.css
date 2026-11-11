@@ -41,3 +41,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width:919px){:root{--bezel-w:2px}}
 @media (max-width:520px){:root{--bezel-w:1.5px}}
 @media (prefers-color-scheme: light){:root{--bezel-ring:rgba(31,29,25,.35)}}
+
+/* Fotos: proporciones por ancho (en celular más bajas y sin forzar ancho mínimo) */
+.photo-wide{aspect-ratio:16/9;min-width:0;width:100%}
+.photo-campo{aspect-ratio:3/2;height:auto}
+@media (min-width:600px){.photo-wide{aspect-ratio:21/8;min-height:200px}.photo-campo{aspect-ratio:4/3}}
+@media (min-width:920px){.photo-campo{aspect-ratio:4/5}}
