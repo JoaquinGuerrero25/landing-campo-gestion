@@ -32,10 +32,12 @@ button,input,select,textarea{font:inherit;color:inherit}
 .h12:hover{color: var(--fg) !important;text-decoration: underline !important}
 .h13:hover{color: var(--fg) !important}
 
-/* Marco del celular del hero: más fino cuando la pantalla es chica */
-:root{--bezel-w:6px;--bezel-r:26px}
-@media (max-width:919px){:root{--bezel-w:4px;--bezel-r:22px}}
-@media (max-width:520px){:root{--bezel-w:2.5px;--bezel-r:16px}}
 
 /* Captura de stock: sin recorte en celular; en escritorio llena la altura de la columna */
 @media (min-width:920px){.shot-stock{min-height:246px}}
+
+/* Marco del celular del hero, estilo iPhone reciente: bisel finísimo, esquinas proporcionales y reborde metálico */
+:root{--bezel-w:3px;--bezel-r:13.5% / 6.4%;--bezel-ring:rgba(255,255,255,.22)}
+@media (max-width:919px){:root{--bezel-w:2px}}
+@media (max-width:520px){:root{--bezel-w:1.5px}}
+@media (prefers-color-scheme: light){:root{--bezel-ring:rgba(31,29,25,.35)}}
